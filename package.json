@@ -1,0 +1,20 @@
+{
+  "name": "folder-to-ui",
+  "version": "0.0.1",
+  "description": "Project in work, just reserve the package name",
+  "homepage": "https://github.com/npm-bdream",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "bdream",
+    "email": "npm.bdream@gmail.com"
+  },
+  "keywords": [
+  ],
+  "license": "",
+  "dependencies": {
+    "folder-contents": "x.x.x"
+  }
+}
