@@ -105,3 +105,7 @@ body {
 .folder-list:hover{
     background-color:rgba(149, 165, 166, 0.1) ;
 }
+
+.is-folder {
+    cursor: pointer;
+}

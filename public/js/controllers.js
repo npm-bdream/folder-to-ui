@@ -13,13 +13,12 @@ folderToUiApp.controller('main', ['$scope', '$http',
          });
          */
 
-        $scope.postRequestList = function () {
-            var p = ".";
-            if ($scope.path) p = $scope.path
+        $scope.postRequestList = function (path) {
+            var p = path;
             var params = {
                 "path" : p
             };
-
+            $scope.folderPath = p;
             $http.post('/api/contents/list', params).success(function (data) {
                 //console.log(data['.files']);
                 $scope.folders = data['.folders'];
@@ -27,7 +26,7 @@ folderToUiApp.controller('main', ['$scope', '$http',
             });
         };
 
-        $scope.postRequestList();
+        $scope.postRequestList('.');
 
         $scope.orderProp = 'name';
     }]);

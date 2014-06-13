@@ -26,7 +26,7 @@
 
             Path: <input ng-model="path">
 
-            <a ng-click="postRequestList()">Click me</a>
+            <a ng-click="postRequestList('.')">Click me</a>
 
             Sort by:
             <select ng-model="orderProp">
@@ -47,7 +47,7 @@
                 <div class="type">Type</div>
             </div>
 
-            <div class="folder-list" ng-repeat="folder in folders">
+            <div class="folder-list is-folder" ng-repeat="folder in folders" ng-click="postRequestList(folderPath+'/'+folder)">
                 <i class="fa fa-folder icon"></i>
                 <div class="name">{{folder}}</div>
                 <div class="date">-</div>
