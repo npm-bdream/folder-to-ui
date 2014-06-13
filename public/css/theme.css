@@ -1,0 +1,107 @@
+@import url(https://reset5.googlecode.com/hg/reset.min.css);
+
+body {
+    color: #404D5B;
+    font-size: 0.857em;
+
+    font-family: "Raleway",Arial,sans-serif;
+    background-color:#F9F9F9;
+}
+
+.header {
+    background-color: #F9F9F9;
+}
+
+.logo {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0 0 0;
+}
+
+.logoTitle {
+    font-weight: 800;
+    font-size: 4.000em;
+}
+
+.logoSubTitle {
+    font-size: 2.500em;
+    color:#C3C8CD;
+}
+
+.options {
+    background-color: rgba(149, 165, 166, 0.1);
+}
+
+.options .content {
+    width: 1000px;
+    margin: 20px auto;
+    padding: 20px 0;
+}
+
+.folder {
+}
+
+.contents{
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0 0 200px 0;
+}
+
+.folder-list-title{
+    font-weight: 800;
+    font-size: 1.200em;
+    height: 60px;
+    border-bottom: 1px dashed #C3C8CD;
+}
+
+.folder-list-title:hover{
+    background-color: #ff0000;
+}
+
+.folder-list-title .name{
+    margin-left: 34px;
+}
+
+.folder-list-title .type{
+
+}
+
+.folder-list-title .size{
+
+}
+
+.folder-list-title .date{
+
+}
+
+.folder-list{
+    height: 30px;
+    overflow: hidden;
+}
+
+.folder-list .name{
+    float: left;
+    min-width: 350px;
+    padding: 7px;
+}
+
+.folder-list .type,
+.folder-list .size,
+.folder-list .date{
+    float: right;
+    min-width: 150px;
+    padding: 7px;
+}
+
+.folder-list .icon{
+    float: left;
+    padding: 5px 7px;
+    width: 20px;
+    font-size: 1.4em;
+    color: #C3C8CD;
+
+}
+
+.folder-list:hover{
+    background-color:rgba(149, 165, 166, 0.1) ;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html ng-app="folder-to-ui">
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,800">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+
+<body ng-controller="main">
+
+    <div class="header">
+        <div class="logo">
+            <div class="logoTitle">folder-to-ui</div>
+            <div class="logoSubTitle">Browse your server forlder with nodejs</div>
+        </div>
+    </div>
+
+    <div class="options">
+        <div class="content">
+            Search: <input ng-model="query">
+
+            Path: <input ng-model="path">
+
+            <a ng-click="postRequestList()">Click me</a>
+
+            Sort by:
+            <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="size">Size</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="folder">
+
+        <div class="contents">
+
+            <div class="folder-list folder-list-title">
+                <div class="name">Name</div>
+                <div class="date">Date</div>
+                <div class="size">Size</div>
+                <div class="type">Type</div>
+            </div>
+
+            <div class="folder-list" ng-repeat="folder in folders">
+                <i class="fa fa-folder icon"></i>
+                <div class="name">{{folder}}</div>
+                <div class="date">-</div>
+                <div class="size">-</div>
+                <div class="type">-</div>
+            </div>
+
+            <div class="folder-list" ng-repeat="file in files | filter:query | orderBy:orderProp">
+                <i class="fa fa-file-o icon"></i>
+                <div class="name">{{file.name}}.{{file.ext}}</div>
+                <div class="date">{{file.atime}}</div>
+                <div class="size">{{file.size}}</div>
+                <div class="type">{{file.ext}}</div>
+            </div>
+
+
+
+            <!--
+            <ul>
+                <li ng-repeat="folder in folders">
+                    {{folder}}
+                </li>
+            </ul>
+            <ul>
+                <li ng-repeat="file in files | filter:query | orderBy:orderProp">
+                    {{file.name}}.{{file.ext}} | {{file.size}} | {{file.fpath}}
+                </li>
+            </ul>
+            !-->
+        </div>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+    <script src="js/controllers.js"></script>
+
+</body>
+</html>
