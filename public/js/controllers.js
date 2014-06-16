@@ -4,25 +4,56 @@ var folderToUiApp = angular.module('folder-to-ui', []);
 
 folderToUiApp.controller('main', ['$scope', '$http',
     function ($scope, $http) {
-        /*
-         $http.get('/api/contents/list').success(function(data) {
-         console.log(data['.files']);
-
-         $scope.folders = data['.folders'];
-         $scope.files = data;
-         });
-         */
+        $scope.recursivity = false;
+        $scope.ui_browsing = 'browsing-all-path';
 
         $scope.postRequestList = function (path) {
+
+
             var p = path;
             var params = {
-                "path" : p
+                "path" : p,
+                "date" : "yyyy/mm/dd HH:MM:ss",
+                "size" : {
+                    "b":" o",
+                    "kb":" ko",
+                    "mb":" mo",
+                    "gb":" go",
+                    "tb":" to"
+                }
             };
+
+            params.path = p;
+
+            if ( $scope.ui_browsing == 'browsing' ) {
+                params.recursively = false;
+                params.method = "simple";
+            } else if ( $scope.ui_browsing == 'browsing-all-simple' ) {
+                params.path = '.';
+                params.recursively = true;
+                params.method = "simple";
+            } else if ( $scope.ui_browsing == 'browsing-all-ext' ) {
+                params.path = '.';
+                params.recursively = true;
+                params.method = "simpleExtension";
+            } else if ( $scope.ui_browsing == 'browsing-all-path' ) {
+                params.path = '.';
+                params.recursively = true;
+                params.method = "simplePath";
+            }
+
+
             $scope.folderPath = p;
-            $http.post('/api/contents/list', params).success(function (data) {
-                //console.log(data['.files']);
-                $scope.folders = data['.folders'];
-                $scope.files = data['.files'];
+            $http.post('/api/folder/list', params).success(function (data) {
+                if ( $scope.ui_browsing == 'browsing' ) {
+                    $scope.folders = data['.folders'];
+                    $scope.files = data['.files'];
+                }  else if ( $scope.ui_browsing == 'browsing-all-simple' ) {
+                    $scope.folders = [];
+                    $scope.files = data;
+                }  else if ( $scope.ui_browsing == 'browsing-all-ext' || $scope.ui_browsing == 'browsing-all-path' ) {
+                    $scope.exts = data;
+                }
             });
         };
 
