@@ -16,6 +16,6 @@ folderToUiApp.config(['$routeProvider',
                 controller: 'FolderContentCtrl'
             }).
             otherwise({
-                redirectTo: '/about'
+                redirectTo: '/folder'
             });
     }]);

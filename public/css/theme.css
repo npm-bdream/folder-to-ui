@@ -1,4 +1,4 @@
-@import url(https://reset5.googlecode.com/hg/reset.min.css);
+@import url(http://necolas.github.io/normalize.css/3.0.1/normalize.css);
 
 .default body {
     color: #404D5B;
@@ -21,15 +21,34 @@
 }
 
 .default .menu{
-    background-color: #404D5B;
+    background-color: rgba(64, 77, 91, 1);
     color: #B4B4B4;
     font-size: 1.500em;
     padding: 15px 0px;
+    height: 25px;
 }
 .default .menu .element{
-    color: #E74C3C;
+    color: #ff5533;
     font-weight: 500;
     cursor: pointer;
+}
+
+.default .menu .element li{
+    color: #B4B4B4;
+    margin-right: 5px;
+}
+
+.default .menu .separator{
+ margin: 0 10px;
+}
+
+.default .menu .left{
+    float: left;
+    margin-right: 15px;
+}
+
+.default .menu .right{
+    float: right;
 }
 
 .default .options {
@@ -65,7 +84,7 @@
 .default .folder-list-title .type,
 .default .folder-list-title .size,
 .default .folder-list-title .date{
-
+    text-align: right;
 }
 
 .default .folder-section{
@@ -93,7 +112,7 @@
 
 .default .folder-list .name{
     float: left;
-    min-width: 350px;
+    min-width: 450px;
     padding: 7px;
 }
 
@@ -103,6 +122,7 @@
     float: right;
     min-width: 150px;
     padding: 7px;
+    text-align: right;
 }
 
 .default .folder-list .icon{
@@ -111,7 +131,6 @@
     width: 20px;
     font-size: 1.4em;
     color: #C3C8CD;
-
 }
 
 .default .folder-list:hover{
