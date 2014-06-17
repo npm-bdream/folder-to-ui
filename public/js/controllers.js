@@ -1,14 +1,12 @@
-var folderToUiApp = angular.module('folder-to-ui', []);
+var folderToUiAppControllers = angular.module('folderToUiAppControllers', []);
 
+folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http',
 
-
-folderToUiApp.controller('main', ['$scope', '$http',
     function ($scope, $http) {
         $scope.recursivity = false;
-        $scope.ui_browsing = 'browsing-all-path';
+        $scope.ui_browsing = 'browsing';
 
         $scope.postRequestList = function (path) {
-
 
             var p = path;
             var params = {
@@ -62,4 +60,4 @@ folderToUiApp.controller('main', ['$scope', '$http',
         $scope.orderProp = 'name';
     }]);
 
-
+folderToUiAppControllers.controller('AboutCtrl', ['$scope', function($scope){}]);

@@ -3,48 +3,48 @@
 .default body {
     color: #404D5B;
     font-size: 0.857em;
-
     font-family: "Raleway",Arial,sans-serif;
     background-color:#F9F9F9;
 }
 
 .default .header {
     background-color: #F9F9F9;
+    padding: 20px 0px;
 }
-
-.default .logo {
-    width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0 0 0;
-}
-
 .default .logoTitle {
     font-weight: 800;
     font-size: 4.000em;
 }
-
 .default .logoSubTitle {
     font-size: 2.500em;
     color:#C3C8CD;
 }
 
-.default .options {
-    background-color: rgba(149, 165, 166, 0.1);
+.default .menu{
+    background-color: #404D5B;
+    color: #B4B4B4;
+    font-size: 1.500em;
+    padding: 15px 0px;
+}
+.default .menu .element{
+    color: #E74C3C;
+    font-weight: 500;
+    cursor: pointer;
 }
 
-.default .options .content {
+.default .options {
+    background-color: rgba(149, 165, 166, 0.1);
+    padding: 20px 0px;
+}
+
+.default .content {
     width: 1000px;
-    margin: 20px auto;
-    padding: 20px 0;
+    margin: 0px auto;
+
 }
 
 .default .folder {
-}
-
-.default .contents{
-    width: 1000px;
-    margin: 0 auto;
-    padding: 0 0 20px 0;
+    padding: 20px 0px;
 }
 
 .default .folder-list-title{
@@ -62,20 +62,14 @@
     margin-left: 34px;
 }
 
-.default .folder-list-title .type{
-
-}
-
-.default .folder-list-title .size{
-
-}
-
+.default .folder-list-title .type,
+.default .folder-list-title .size,
 .default .folder-list-title .date{
 
 }
 
 .default .folder-section{
-    margin: 0 0 40px 0;
+    padding: 20px 0px;
 }
 
 .default .folder-section-ext{

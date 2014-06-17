@@ -1,0 +1,93 @@
+<div class="options">
+    <div class="content">
+
+        <div>
+            Browsing :
+            <select ng-model="ui_browsing" ng-change="postRequestList('.')">
+                <option value="browsing">Browsing simple</option>
+                <option value="browsing-all-simple">Browsing simple all</option>
+                <option value="browsing-all-ext">Browsing ext all</option>
+                <option value="browsing-all-path">Browsing path all</option>
+            </select>
+            <br /><br />
+        </div>
+        <div>
+            Search: <input ng-model="query">
+            Sort by:
+            <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="size">Size</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="folder">
+
+    <div class="content" ng-if="ui_browsing == 'browsing' || ui_browsing == 'browsing-all-simple'">
+
+        <div class="folder-list folder-list-title">
+            <div class="name">Name</div>
+            <div class="date">Date</div>
+            <div class="size">Size</div>
+            <div class="type">Type</div>
+        </div>
+
+        <div class="folder-list is-folder" ng-repeat="folder in folders" ng-click="postRequestList(folderPath+'/'+folder)">
+            <i class="fa fa-folder icon"></i>
+            <div class="name">{{folder}}</div>
+            <div class="date">-</div>
+            <div class="size">-</div>
+            <div class="type">-</div>
+        </div>
+
+        <div class="folder-list" ng-repeat="file in files | filter:query | orderBy:orderProp">
+            <i class="fa fa-file-o icon"></i>
+            <div class="name" ng-if="file.ext != ''">{{file.name}}.{{file.ext}}</div>
+            <div class="name" ng-if="file.ext == ''">{{file.name}}</div>
+            <div class="date">{{file.atime}}</div>
+            <div class="size">{{file.size}}</div>
+            <div class="type">{{file.ext}}</div>
+        </div>
+
+    </div>
+
+    <div class="content" ng-if="ui_browsing == 'browsing-all-ext' || ui_browsing == 'browsing-all-path'">
+
+        <div ng-repeat="(key, value) in exts">
+
+            <div class="folder-section">
+
+                <div ng-if="ui_browsing == 'browsing-all-ext'">
+                    <div class="folder-section-ext" ng-if="key != ''">{{key}}</div>
+                    <div class="folder-section-ext" ng-if="key == ''">Without extension</div>
+                </div>
+
+                <div ng-if="ui_browsing == 'browsing-all-path'">
+                    <div class="folder-section-path">{{key}}</div>
+
+                </div>
+
+                <div class="folder-list folder-list-title">
+                    <div class="name">Name</div>
+                    <div class="date">Date</div>
+                    <div class="size">Size</div>
+                    <div class="type">Type</div>
+                </div>
+
+                <div class="folder-list" ng-repeat="val in value">
+                    <i class="fa fa-file-o icon"></i>
+                    <div class="name" ng-if="val.ext != ''">{{val.name}}.{{val.ext}}</div>
+                    <div class="name" ng-if="val.ext == ''">{{val.name}}</div>
+                    <div class="date">{{val.atime}}</div>
+                    <div class="size">{{val.size}}</div>
+                    <div class="type">{{val.ext}}</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
