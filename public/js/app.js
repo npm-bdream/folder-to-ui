@@ -7,13 +7,21 @@ folderToUiApp.config(['$routeProvider',
     function($routeProvider) {
         console.log('toto');
         $routeProvider.
-            when('/about', {
-                templateUrl: './views/about.html',
-                controller: 'AboutCtrl'
+            when('/home', {
+                templateUrl: './views/home.html',
+                controller: 'HomeCtrl'
             }).
             when('/folder', {
                 templateUrl: './views/folder-contents.html',
                 controller: 'FolderContentCtrl'
+            }).
+            when('/settings', {
+                templateUrl: './views/settings.html',
+                controller: 'SettingsCtrl'
+            }).
+            when('/about', {
+                templateUrl: './views/about.html',
+                controller: 'AboutCtrl'
             }).
             otherwise({
                 redirectTo: '/folder'

@@ -22,11 +22,11 @@
 
     <div class="menu">
         <div class="content">
-            <span class="element left"><li class="fa fa-home"></li> Home</span>
+            <span class="element left" ng-click="changeView('home')"><li class="fa fa-home"></li> Home</span>
 
             <span class="element left" ng-click="changeView('folder')"><li class="fa fa-folder-open"></li> Folders</span>
 
-            <span class="element left"><li class="fa fa-gear"></li> Settings</span>
+            <span class="element left" ng-click="changeView('settings')"><li class="fa fa-gear"></li> Settings</span>
 
             <span class="element right" ng-click="changeView('about')"><li class="fa fa-send"></li> About</span>
         </div>

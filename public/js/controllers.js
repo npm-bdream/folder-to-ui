@@ -6,6 +6,13 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$location', function(
     }
 }]);
 
+folderToUiAppControllers.controller('HomeCtrl', ['$scope', function($scope){
+
+}]);
+folderToUiAppControllers.controller('SettingsCtrl', ['$scope', function($scope){
+
+}]);
+
 folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.recursivity = false;
     $scope.ui_browsing = 'browsing';
