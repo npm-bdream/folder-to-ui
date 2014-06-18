@@ -44,11 +44,15 @@ folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', fun
             var splitedLenght = splited_conf_folder_path.length;
             for (var i=0; i<splitedLenght;i++){
                 if (splited_conf_folder_path[i] == ''){
-                    $scope.conf_iron_path.push({"name": splited_conf_folder_path[i], "path":});
+                    $scope.conf_iron_path.push({"name": splited_conf_folder_path[i], "path":''});
                 } else {
-                    $scope.conf_iron_path.push({"name": splited_conf_folder_path[i], "path":});
+                    var currentIronPath = '';
+
+                    if ($scope.conf_iron_path[i-1]) currentIronPath = $scope.conf_iron_path[i-1].path;
+                    $scope.conf_iron_path.push({"name": splited_conf_folder_path[i], "path":currentIronPath+'/'+splited_conf_folder_path[i]});
                 }
             }
+            console.log ($scope.conf_iron_path);
             // TODO
         } else if ( $scope.conf_ui_browsing == 'browsing-all-simple' ) {
             params.path = '';

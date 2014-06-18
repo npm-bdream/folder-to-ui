@@ -22,7 +22,11 @@
     </div>
 </div>
 
-<div>
+<div class="iron-folder" ng-if="conf_ui_browsing == 'browsing'">
+
+    <div class="content">
+        <span ng-repeat="iron in conf_iron_path" ng-click="postRequestList(iron.path)">/{{iron.name}}</span>
+    </div>
 
 </div>
 
