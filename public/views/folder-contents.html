@@ -2,14 +2,14 @@
     <div class="content">
 
         <div>
-            Browsing :
-            <select ng-model="ui_browsing" ng-change="postRequestList('.')">
+            Browsing mode :
+            <select ng-model="conf_ui_browsing" ng-change="postRequestList('')">
                 <option value="browsing">Browsing simple</option>
-                <option value="browsing-all-simple">Browsing simple all</option>
-                <option value="browsing-all-ext">Browsing ext all</option>
-                <option value="browsing-all-path">Browsing path all</option>
+                <option value="browsing-all-simple">Browsing all</option>
+                <option value="browsing-all-ext">Browsing all by extension</option>
+                <option value="browsing-all-path">Browsing all by path</option>
             </select>
-            <br /><br />
+            <br />
         </div>
         <div>
             Search: <input ng-model="query">
@@ -22,9 +22,13 @@
     </div>
 </div>
 
+<div>
+
+</div>
+
 <div class="folder">
 
-    <div class="content" ng-if="ui_browsing == 'browsing' || ui_browsing == 'browsing-all-simple'">
+    <div class="content" ng-if="conf_ui_browsing == 'browsing' || conf_ui_browsing == 'browsing-all-simple'">
 
         <div class="folder-list folder-list-title">
             <div class="name">Name</div>
@@ -33,7 +37,7 @@
             <div class="type">Type</div>
         </div>
 
-        <div class="folder-list is-folder" ng-repeat="folder in folders" ng-click="postRequestList(folderPath+'/'+folder)">
+        <div class="folder-list is-folder" ng-repeat="folder in folders" ng-click="postRequestList(conf_folder_path+'/'+folder)">
             <i class="fa fa-folder icon"></i>
             <div class="name">{{folder}}</div>
             <div class="date">-</div>
@@ -52,18 +56,18 @@
 
     </div>
 
-    <div class="content" ng-if="ui_browsing == 'browsing-all-ext' || ui_browsing == 'browsing-all-path'">
+    <div class="content" ng-if="conf_ui_browsing == 'browsing-all-ext' || conf_ui_browsing == 'browsing-all-path'">
 
         <div ng-repeat="(key, value) in exts">
 
             <div class="folder-section">
 
-                <div ng-if="ui_browsing == 'browsing-all-ext'">
+                <div ng-if="conf_ui_browsing == 'browsing-all-ext'">
                     <div class="folder-section-ext" ng-if="key != ''">{{key}}</div>
                     <div class="folder-section-ext" ng-if="key == ''">Without extension</div>
                 </div>
 
-                <div ng-if="ui_browsing == 'browsing-all-path'">
+                <div ng-if="conf_ui_browsing == 'browsing-all-path'">
                     <div class="folder-section-path">{{key}}</div>
 
                 </div>

@@ -14,8 +14,8 @@ folderToUiAppControllers.controller('SettingsCtrl', ['$scope', function($scope){
 }]);
 
 folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.recursivity = false;
-    $scope.ui_browsing = 'browsing';
+    $scope.conf_ui_browsing = 'browsing';
+
 
     $scope.postRequestList = function (path) {
 
@@ -34,39 +34,52 @@ folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', fun
 
         params.path = p;
 
-        if ( $scope.ui_browsing == 'browsing' ) {
+        if ( $scope.conf_ui_browsing == 'browsing' ) {
             params.recursively = false;
             params.method = "simple";
-        } else if ( $scope.ui_browsing == 'browsing-all-simple' ) {
-            params.path = '.';
+            $scope.conf_folder_path = p;
+            $scope.conf_iron_path = [];
+            var splited_conf_folder_path = $scope.conf_folder_path.split('/');
+            console.log (splited_conf_folder_path);
+            var splitedLenght = splited_conf_folder_path.length;
+            for (var i=0; i<splitedLenght;i++){
+                if (splited_conf_folder_path[i] == ''){
+                    $scope.conf_iron_path.push({"name": splited_conf_folder_path[i], "path":});
+                } else {
+                    $scope.conf_iron_path.push({"name": splited_conf_folder_path[i], "path":});
+                }
+            }
+            // TODO
+        } else if ( $scope.conf_ui_browsing == 'browsing-all-simple' ) {
+            params.path = '';
             params.recursively = true;
             params.method = "simple";
-        } else if ( $scope.ui_browsing == 'browsing-all-ext' ) {
-            params.path = '.';
+        } else if ( $scope.conf_ui_browsing == 'browsing-all-ext' ) {
+            params.path = '';
             params.recursively = true;
             params.method = "simpleExtension";
-        } else if ( $scope.ui_browsing == 'browsing-all-path' ) {
-            params.path = '.';
+        } else if ( $scope.conf_ui_browsing == 'browsing-all-path' ) {
+            params.path = '';
             params.recursively = true;
             params.method = "simplePath";
         }
 
 
-        $scope.folderPath = p;
+
         $http.post('/api/folder/list', params).success(function (data) {
-            if ( $scope.ui_browsing == 'browsing' ) {
+            if ( $scope.conf_ui_browsing == 'browsing' ) {
                 $scope.folders = data['.folders'];
                 $scope.files = data['.files'];
-            }  else if ( $scope.ui_browsing == 'browsing-all-simple' ) {
+            }  else if ( $scope.conf_ui_browsing == 'browsing-all-simple' ) {
                 $scope.folders = [];
                 $scope.files = data;
-            }  else if ( $scope.ui_browsing == 'browsing-all-ext' || $scope.ui_browsing == 'browsing-all-path' ) {
+            }  else if ( $scope.conf_ui_browsing == 'browsing-all-ext' || $scope.conf_ui_browsing == 'browsing-all-path' ) {
                 $scope.exts = data;
             }
         });
     };
 
-    $scope.postRequestList('./sharing');
+    $scope.postRequestList('');
 
     $scope.orderProp = 'name';
 }]);

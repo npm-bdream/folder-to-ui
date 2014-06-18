@@ -5,7 +5,6 @@ var folderToUiApp = angular.module('folder-to-ui', [
 
 folderToUiApp.config(['$routeProvider',
     function($routeProvider) {
-        console.log('toto');
         $routeProvider.
             when('/home', {
                 templateUrl: './views/home.html',

@@ -29,8 +29,6 @@ app.set('title', 'folder-to-ui');
 
 if (Config.server_dir == "") Config.server_dir = __dirname;
 
-//console.log(Config.server_dir + Config.server_public);
-
 Util.log(("Public web folder : " + Config.server_dir + Config.server_public).help);
 app.use(Express.static( Config.server_dir + Config.server_public));
 
@@ -41,10 +39,29 @@ app.use(BodyParser.json());       // to support JSON-encoded bodies
 app.use(BodyParser.urlencoded()); // to support URL-encoded bodies
 
 app.post('/api/folder/list', function(req, res){
+
+    /*
+    Util.log("Request body : ".help);
     Util.log(JSON.stringify(req.body).input);
+    */
+
     var options = req.body;
+
+    // force usage of basepath to false
+    options.useBasePath = false;
+    // force to use server base path
+    options.path = Config.server_dir + Config.server_sharing + options.path;
+
+    Util.log(("needed folder : " + options.path).debug);
+
     var jsonResult = FolderContents(options);
+
+    /*
+    Util.log("Result : ".help);
+    Util.log(JSON.stringify(jsonResult));
+    */
     res.send(JSON.stringify(jsonResult));
+
 });
 
 app.post('/api/folder/delete', function(req, res){});
