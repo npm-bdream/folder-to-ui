@@ -27,13 +27,14 @@ app.use(Morgan());
 
 app.set('title', 'folder-to-ui');
 
-if (Config.server_dir == "") Config.server_dir = __dirname;
+if (Config.server_public_base == "") Config.server_public_base = __dirname;
+if (Config.server_sharing_base == "") Config.server_sharing_base = __dirname;
 
-Util.log(("Public web folder : " + Config.server_dir + Config.server_public).help);
-app.use(Express.static( Config.server_dir + Config.server_public));
+Util.log(("Public web folder : " + Config.server_public_base + Config.server_public_dir).help);
+app.use(Express.static( Config.server_public_base + Config.server_public_dir ));
 
-Util.log(("Sharing web folder : " + Config.server_dir + Config.server_sharing).help);
-app.use(Config.server_sharing, Express.static( Config.server_dir + Config.server_sharing));
+Util.log(("Sharing web folder : " + Config.server_sharing_base + Config.server_sharing_dir).help);
+app.use(Config.server_sharing_ui_path, Express.static( Config.server_sharing_base + Config.server_sharing_dir ));
 
 app.use(BodyParser.json());       // to support JSON-encoded bodies
 app.use(BodyParser.urlencoded()); // to support URL-encoded bodies
@@ -50,7 +51,7 @@ app.post('/api/folder/list', function(req, res){
     // force usage of basepath to false
     options.useBasePath = false;
     // force to use server base path
-    options.path = Config.server_dir + Config.server_sharing + options.path;
+    options.path = Config.server_sharing_base + Config.server_sharing_dir + options.path;
 
     Util.log(("Requested folder : " + options.path).debug);
 
