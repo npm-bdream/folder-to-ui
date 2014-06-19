@@ -16,6 +16,8 @@ folderToUiAppControllers.controller('SettingsCtrl', ['$scope', function($scope){
 folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.conf_ui_browsing = 'browsing';
 
+    $scope.conf_ui_sort_file = 'name';
+    $scope.conf_ui_sort_dir = 'toString()';
 
     $scope.postRequestList = function (path) {
 
@@ -85,7 +87,7 @@ folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', fun
 
     $scope.postRequestList('');
 
-    $scope.orderProp = 'name';
+
 }]);
 
 folderToUiAppControllers.controller('AboutCtrl', ['$scope', function($scope){

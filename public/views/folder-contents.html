@@ -1,24 +1,14 @@
 <div class="options">
     <div class="content">
 
-        <div>
-            Browsing mode :
-            <select ng-model="conf_ui_browsing" ng-change="postRequestList('')">
+
+            Browsing mode : <select ng-model="conf_ui_browsing" ng-change="postRequestList('')">
                 <option value="browsing">Browsing simple</option>
                 <option value="browsing-all-simple">Browsing all</option>
                 <option value="browsing-all-ext">Browsing all by extension</option>
                 <option value="browsing-all-path">Browsing all by path</option>
-            </select>
-            <br />
-        </div>
-        <div>
-            Search: <input ng-model="query">
-            Sort by:
-            <select ng-model="orderProp">
-                <option value="name">Alphabetical</option>
-                <option value="size">Size</option>
-            </select>
-        </div>
+            </select> | Filter : <input ng-model="query">
+
     </div>
 </div>
 
@@ -38,13 +28,13 @@
     <div class="content" ng-if="conf_ui_browsing == 'browsing' || conf_ui_browsing == 'browsing-all-simple'">
 
         <div class="folder-list folder-list-title">
-            <div class="name">Name</div>
-            <div class="date">Date</div>
-            <div class="size">Size</div>
-            <div class="type">Type</div>
+            <div class="name" ng-click="conf_ui_sort_file = 'name'; conf_ui_sort_dir='toString()'; reverseDir=!reverseDir; reverse=reverseDir;">Name</div>
+            <div class="date" ng-click="conf_ui_sort_file = 'date'; reverse=!reverse">Date</div>
+            <div class="size" ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">Size</div>
+            <div class="type" ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">Type</div>
         </div>
 
-        <div class="folder-list is-folder" ng-repeat="folder in folders" ng-click="postRequestList(conf_folder_path+'/'+folder)">
+        <div class="folder-list is-folder" ng-repeat="folder in folders | filter:query | orderBy:conf_ui_sort_dir:reverseDir" ng-click="postRequestList(conf_folder_path+'/'+folder)">
             <i class="fa fa-folder icon"></i>
             <div class="name is-folder">{{folder}}</div>
             <div class="date">-</div>
@@ -52,7 +42,7 @@
             <div class="type">-</div>
         </div>
 
-        <div class="folder-list" ng-repeat="file in files | filter:query | orderBy:orderProp">
+        <div class="folder-list" ng-repeat="file in files | filter:query | orderBy:conf_ui_sort_file:reverse">
             <i class="fa fa-file-o icon"></i>
             <div class="name" ng-if="file.ext != ''">{{file.name}}.{{file.ext}}</div>
             <div class="name" ng-if="file.ext == ''">{{file.name}}</div>
