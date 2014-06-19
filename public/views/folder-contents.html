@@ -25,7 +25,10 @@
 <div class="iron-folder" ng-if="conf_ui_browsing == 'browsing'">
 
     <div class="content">
-        <span ng-repeat="iron in conf_iron_path" ng-click="postRequestList(iron.path)">/{{iron.name}}</span>
+        <li class="fa fa-folder-open iron-icon"></li>
+        <span ng-repeat="iron in conf_iron_path" ng-click="postRequestList(iron.path)">
+            /<span class="iron-sub-element">{{iron.name}}</span>
+        </span>
     </div>
 
 </div>
@@ -43,7 +46,7 @@
 
         <div class="folder-list is-folder" ng-repeat="folder in folders" ng-click="postRequestList(conf_folder_path+'/'+folder)">
             <i class="fa fa-folder icon"></i>
-            <div class="name">{{folder}}</div>
+            <div class="name is-folder">{{folder}}</div>
             <div class="date">-</div>
             <div class="size">-</div>
             <div class="type">-</div>

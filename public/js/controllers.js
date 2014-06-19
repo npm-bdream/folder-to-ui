@@ -44,7 +44,7 @@ folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', fun
             var splitedLenght = splited_conf_folder_path.length;
             for (var i=0; i<splitedLenght;i++){
                 if (splited_conf_folder_path[i] == ''){
-                    $scope.conf_iron_path.push({"name": splited_conf_folder_path[i], "path":''});
+                    $scope.conf_iron_path.push({"name": 'Share', "path":''});
                 } else {
                     var currentIronPath = '';
 

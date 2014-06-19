@@ -52,7 +52,7 @@ app.post('/api/folder/list', function(req, res){
     // force to use server base path
     options.path = Config.server_dir + Config.server_sharing + options.path;
 
-    Util.log(("needed folder : " + options.path).debug);
+    Util.log(("Requested folder : " + options.path).debug);
 
     var jsonResult = FolderContents(options);
 
