@@ -2,14 +2,13 @@
 *   Global
 **************************************************************/
 @import url(http://necolas.github.io/normalize.css/3.0.1/normalize.css);
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,800);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,100,300,500,800);
 
-
-.default {
+.themetest {
     color: #404D5B;
     font-size: 0.857em;
-    font-family: "Raleway",Arial,sans-serif;
-    background-color:#F9F9F9;
+    font-family: "Ubuntu Mono",Arial,sans-serif;
+    background-color: #e7f4f9;
 }
 
 
@@ -18,61 +17,61 @@
 *   Header
 **************************************************************/
 
-.default .header {
-    background-color: #F9F9F9;
+.themetest .header {
+    background-color: #e7f4f9;
     padding: 20px 0px;
 }
-.default .header .title {
+.themetest .header .title {
     font-weight: 800;
     font-size: 4.000em;
 }
-.default .header .sub-title {
+.themetest .header .sub-title {
     font-size: 2.500em;
-    color:#C3C8CD;
+    color: #7bcd97;
 }
 
 /**************************************************************
 *   Menu
 **************************************************************/
 
-.default .menu{
-    background-color: rgba(64, 77, 91, 1);
+.themetest .menu{
+    background-color: #5b441c;
     color: #B4B4B4;
     font-size: 1.500em;
     padding: 15px 0px;
     height: 25px;
 }
-.default .menu .element{
-    color: #ff5533;
+.themetest .menu .element{
+    color: #63cdff;
     font-weight: 500;
     cursor: pointer;
 }
 
-.default .menu .element li{
+.themetest .menu .element li{
     color: #B4B4B4;
     margin-right: 5px;
 }
 
-.default .menu .separator{
- margin: 0 10px;
+.themetest .menu .separator{
+    margin: 0 10px;
 }
 
-.default .menu .left{
+.themetest .menu .left{
     float: left;
     margin-right: 15px;
 }
 
-.default .menu .right{
+.themetest .menu .right{
     margin-left: 15px;
     float: right;
 }
 
-.default .options {
-    background-color: rgba(149, 165, 166, 0.1);
+.themetest .options {
+    background-color: #e7f4f9;
     padding: 20px 0px;
 }
 
-.default .content {
+.themetest .content {
     width: 1000px;
     margin: 0px auto;
 
@@ -82,42 +81,42 @@
 *   TABLE CONTENT
 **************************************************************/
 
-.default .table-content{
-   width: 1000px;
-   text-align: left;
+.themetest .table-content{
+    width: 1000px;
+    text-align: left;
 }
 
-.default .table-content thead{
+.themetest .table-content thead{
     font-weight: 800;
     font-size: 1.200em;
     height: 40px;
     border-bottom: 1px dashed #C3C8CD;
 }
 
-.default .table-content tr {
+.themetest .table-content tr {
     height: 30px;
 }
 
-.default .table-content tr:hover .icon {
-    color: #404D5B;
+.themetest .table-content tr:hover .icon {
+    color: #5b441c;
 }
 
-.default .table-content .icon {
+.themetest .table-content .icon {
 
     padding: 0px 5px;
     font-size: 1.400em;
     color: #C3C8CD;
 }
 
-.default .table-content tr .icon:hover{
-    color: #ff5533;
+.themetest .table-content tr .icon:hover{
+    color: #63cdff;
 }
 
-.default .table-content .is-folder {
-    color: #ff5533;
+.themetest .table-content .is-folder {
+    color: #63cdff;
 }
 
-.default .table-content .is-action {
+.themetest .table-content .is-action {
     cursor: pointer;
 }
 
@@ -131,39 +130,39 @@
 
 
 
-.default .folder-section{
+.themetest .folder-section{
     padding: 20px 0px;
 }
 
-.default .folder-section-ext{
+.themetest .folder-section-ext{
     font-size: 1.400em;
-    color: #ff5533;
+    color: #63cdff;
     overflow: hidden;
     height: 45px;
 }
-.default .folder-section-path{
+.themetest .folder-section-path{
     font-size: 1.400em;
     font-weight: 800;
-    color: #ff5533;
+    color: #63cdff;
     overflow: hidden;
     height: 45px;
 }
 
 
 
-.default .iron-folder {
+.themetest .iron-folder {
     font-weight: 800;
     font-size: 1.200em;
     margin-top: 20px;
 }
 
-.default .iron-icon {
+.themetest .iron-icon {
 
     font-size: 1.4em;
 }
 
-.default .iron-sub-element {
-    color: #ff5533;
+.themetest .iron-sub-element {
+    color: #63cdff;
     font-weight: 500;
     cursor: pointer;
 }
