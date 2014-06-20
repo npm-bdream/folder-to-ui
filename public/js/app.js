@@ -26,3 +26,5 @@ folderToUiApp.config(['$routeProvider',
                 redirectTo: '/folder'
             });
     }]);
+
+var folderToUiAppControllers = angular.module('folderToUiAppControllers', []);
