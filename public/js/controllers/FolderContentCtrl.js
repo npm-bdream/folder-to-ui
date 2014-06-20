@@ -1,6 +1,7 @@
 folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.conf_ui_browsing = 'browsing';
-
+    $scope.conf_ui_extension = config.extension;
+    $scope.conf_ui_managedType = config.managedType;
     $scope.conf_ui_sort_file = 'name';
     $scope.conf_ui_sort_dir = 'toString()';
 

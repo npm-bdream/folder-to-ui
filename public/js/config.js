@@ -1,18 +1,18 @@
 var config = {};
 
 config.managedType = {
-
+    "executable":"fa-gear",
     "archive":"fa-file-archive-o",
     "sound":"fa-music",
     "video":"fa-film",
     "code":"fa-file-code-o",
     "text":"fa-file-text-o",
     "image":"fa-file-image-o",
-    "script":"fa-terminal"
+    "script":"fa-terminal",
+    "default":"fa-file-o"
 };
 
 config.extension = {
-
     "mp3":config.managedType.sound,
     "flac":config.managedType.sound,
     "alac":config.managedType.sound,
@@ -22,7 +22,6 @@ config.extension = {
     "mpa":config.managedType.sound,
     "m3u":config.managedType.sound,
     "ogg":config.managedType.sound,
-
 
     "avi":config.managedType.video,
     "m4v":config.managedType.video,
@@ -49,6 +48,7 @@ config.extension = {
     "zip":config.managedType.archive,
     "zipx":config.managedType.archive,
     "tgz":config.managedType.archive,
+    "tar":config.managedType.archive,
 
     "asp":config.managedType.code,
     "aspx":config.managedType.code,
@@ -63,5 +63,47 @@ config.extension = {
     "htaccess":config.managedType.code,
     "xml":config.managedType.code,
     "json":config.managedType.code,
-    "wml":config.managedType.code
+    "wml":config.managedType.code,
+    "md":config.managedType.code,
+    "c":config.managedType.code,
+    "class":config.managedType.code,
+    "cpp":config.managedType.code,
+    "fla":config.managedType.code,
+    "h":config.managedType.code,
+    "java":config.managedType.code,
+    "m":config.managedType.code,
+    "hpp":config.managedType.code,
+    "rb":config.managedType.code,
+    "as":config.managedType.code,
+
+    "apk":config.managedType.executable,
+    "app":config.managedType.executable,
+    "exe":config.managedType.executable,
+    "jar":config.managedType.executable,
+    "vb":config.managedType.executable,
+
+    "doc":config.managedType.text,
+    "docx":config.managedType.text,
+    "log":config.managedType.text,
+    "msg":config.managedType.text,
+    "odt":config.managedType.text,
+    "rtf":config.managedType.text,
+    "tex":config.managedType.text,
+    "txt":config.managedType.text,
+    "gdoc":config.managedType.text,
+
+    "bmp":config.managedType.image,
+    "gif":config.managedType.image,
+    "jpg":config.managedType.image,
+    "png":config.managedType.image,
+    "psd":config.managedType.image,
+    "tif":config.managedType.image,
+    "jpeg":config.managedType.image,
+
+    "pl":config.managedType.script,
+    "py":config.managedType.script,
+    "sh":config.managedType.script,
+    "gs":config.managedType.script,
+    "rbw":config.managedType.script,
+    "bat":config.managedType.script
 };

@@ -48,7 +48,8 @@
                     <td><i class="fa fa-trash-o icon is-action"></i><i class="fa fa-pencil-square-o icon is-action"></i></td>
                 </tr>
                 <tr ng-repeat="file in files | filter:query | orderBy:conf_ui_sort_file:reverse">
-                    <td><i class="fa fa-file-o icon"></i></td>
+                    <td ng-if="conf_ui_extension[file.ext]"><i class="" ng-class="['fa',conf_ui_extension[file.ext],'icon']" ></i></td>
+                    <td ng-if="!conf_ui_extension[file.ext]"><i class="" ng-class="['fa',conf_ui_managedType['default'],'icon']" ></i></td>
                     <td ng-if="file.ext != ''">{{file.name}}.{{file.ext}}</td>
                     <td ng-if="file.ext == ''">{{file.name}}</td>
                     <td>{{file.ext}}</td>
