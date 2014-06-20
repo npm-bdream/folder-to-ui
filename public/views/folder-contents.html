@@ -10,41 +10,45 @@
 </div>
 
 <div ng-if="conf_ui_browsing == 'browsing'">
-    <div class="iron-folder">
-        <div class="content">
-            <li class="fa fa-folder-open-o iron-icon"></li>
-            <span ng-repeat="iron in conf_iron_path" ng-click="postRequestList(iron.path)">
-                /<span class="iron-sub-element">{{iron.name}}</span>
-            </span>
-        </div>
-    </div>
+
     <div class="content">
         <table class="table-content">
+
+            <caption>
+                <li class="fa fa-folder-open-o icon"></li></td>
+                <span ng-repeat="iron in conf_iron_path" ng-click="postRequestList(iron.path)">
+                    /<span class="is-folder">{{iron.name}}</span>
+                </span>
+            </caption>
+
             <thead>
-                <td></td>
+                <td class="table-icon"></td>
                 <td ng-click="conf_ui_sort_file = 'name'; conf_ui_sort_dir='toString()'; reverseDir=!reverseDir; reverse=reverseDir;">Name</td>
-                <td ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">Type</td>
-                <td ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">Size</td>
-                <td ng-click="conf_ui_sort_file = 'atime'; reverse=!reverse">Date</td>
-                <td>Actions</td>
+                <td class="table-type" ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">Type</td>
+                <td class="table-size" ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">Size</td>
+                <td class="table-date" ng-click="conf_ui_sort_file = 'atime'; reverse=!reverse">Date</td>
+                <td class="table-action"></td>
             </thead>
-            <tr ng-repeat="folder in folders | filter:query | orderBy:conf_ui_sort_dir:reverseDir">
-                <td><i class="fa fa-folder icon"></i></td>
-                <td class="is-folder is-action" ng-click="postRequestList(conf_folder_path+'/'+folder)">{{folder}}</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td><i class="fa fa-trash-o icon is-action"></i><i class="fa fa-pencil-square-o icon is-action"></i></td>
-            </tr>
-            <tr ng-repeat="file in files | filter:query | orderBy:conf_ui_sort_file:reverse">
-                <td><i class="fa fa-file-o icon"></i></td>
-                <td ng-if="file.ext != ''">{{file.name}}.{{file.ext}}</td>
-                <td ng-if="file.ext == ''">{{file.name}}</td>
-                <td>{{file.ext}}</td>
-                <td>{{file.size}}</td>
-                <td>{{file.atime}}</td>
-                <td><i class="fa fa-trash-o icon is-action"></i><i class="fa fa-pencil-square-o icon is-action"></i><i class="fa fa-cloud-download icon is-action"></i></td>
-            </tr>
+
+            <tbody>
+                <tr ng-repeat="folder in folders | filter:query | orderBy:conf_ui_sort_dir:reverseDir">
+                    <td><i class="fa fa-folder icon"></i></td>
+                    <td class="is-folder is-action" ng-click="postRequestList(conf_folder_path+'/'+folder)">{{folder}}</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><i class="fa fa-trash-o icon is-action"></i><i class="fa fa-pencil-square-o icon is-action"></i></td>
+                </tr>
+                <tr ng-repeat="file in files | filter:query | orderBy:conf_ui_sort_file:reverse">
+                    <td><i class="fa fa-file-o icon"></i></td>
+                    <td ng-if="file.ext != ''">{{file.name}}.{{file.ext}}</td>
+                    <td ng-if="file.ext == ''">{{file.name}}</td>
+                    <td>{{file.ext}}</td>
+                    <td>{{file.size}}</td>
+                    <td>{{file.atime}}</td>
+                    <td><i class="fa fa-trash-o icon is-action"></i><i class="fa fa-pencil-square-o icon is-action"></i><i class="fa fa-cloud-download icon is-action"></i></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>

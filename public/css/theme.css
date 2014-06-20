@@ -42,6 +42,7 @@
     padding: 15px 0px;
     height: 25px;
 }
+
 .default .menu .element{
     color: #ff5533;
     font-weight: 500;
@@ -85,25 +86,48 @@
 .default .table-content{
    width: 1000px;
    text-align: left;
+   margin: 20px 0px;
+}
+
+.default .table-content caption{
+
+    font-size: 1.200em;
+    height: 40px;
+
+    text-align: left;
 }
 
 .default .table-content thead{
     font-weight: 800;
     font-size: 1.200em;
-    height: 40px;
-    border-bottom: 1px dashed #C3C8CD;
+    height: 30px;
+    border-bottom: 1px solid #C3C8CD;
+}
+
+.default .table-content thead .table-date {
+    width: 150px;
+}
+
+.default .table-content thead .table-action,
+.default .table-content thead .table-type,
+.default .table-content thead .table-size {
+    width: 100px;
+}
+
+.default .table-content thead .table-icon {
+    width: 40px;
 }
 
 .default .table-content tr {
-    height: 30px;
+    height: 35px;
 }
 
 .default .table-content tr:hover .icon {
     color: #404D5B;
 }
 
-.default .table-content .icon {
-
+.default .table-content caption .icon,
+.default .table-content tr .icon {
     padding: 0px 5px;
     font-size: 1.400em;
     color: #C3C8CD;
@@ -120,6 +144,12 @@
 .default .table-content .is-action {
     cursor: pointer;
 }
+
+
+
+
+
+
 
 
 
@@ -150,20 +180,3 @@
 }
 
 
-
-.default .iron-folder {
-    font-weight: 800;
-    font-size: 1.200em;
-    margin-top: 20px;
-}
-
-.default .iron-icon {
-
-    font-size: 1.4em;
-}
-
-.default .iron-sub-element {
-    color: #ff5533;
-    font-weight: 500;
-    cursor: pointer;
-}
