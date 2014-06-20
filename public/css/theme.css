@@ -141,12 +141,45 @@
     color: #ff5533;
 }
 
+
+.default .table-content .is-iron-folder{
+    font-weight: 500;
+    margin: 3px;
+    padding: 5px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+}
+
+.default .table-content .is-iron-folder:hover{
+
+    background-color: #404D5B;
+    -webkit-box-shadow: #C3C8CD 5px 5px 5px;
+    -moz-box-shadow: #C3C8CD 5px 5px 5px;
+    box-shadow: #C3C8CD 5px 5px 5px;
+}
+
 .default .table-content .is-action {
     cursor: pointer;
 }
 
+.default .table-content .is-sortable{
+    font-weight: 800;
+    padding: 5px;
 
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
 
+.default .table-content .is-sortable:hover{
+    background-color: #C3C8CD;
+    -webkit-box-shadow: #C3C8CD 5px 5px 5px;
+    -moz-box-shadow: #C3C8CD 5px 5px 5px;
+    box-shadow: #C3C8CD 5px 5px 5px;
+}
 
 
 

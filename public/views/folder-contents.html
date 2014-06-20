@@ -17,16 +17,24 @@
             <caption>
                 <li class="fa fa-folder-open-o icon"></li></td>
                 <span ng-repeat="iron in conf_iron_path" ng-click="postRequestList(iron.path)">
-                    /<span class="is-folder">{{iron.name}}</span>
+                    /<span class="is-folder is-action is-iron-folder">{{iron.name}}</span>
                 </span>
             </caption>
 
             <thead>
                 <td class="table-icon"></td>
-                <td ng-click="conf_ui_sort_file = 'name'; conf_ui_sort_dir='toString()'; reverseDir=!reverseDir; reverse=reverseDir;">Name</td>
-                <td class="table-type" ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">Type</td>
-                <td class="table-size" ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">Size</td>
-                <td class="table-date" ng-click="conf_ui_sort_file = 'atime'; reverse=!reverse">Date</td>
+                <td class="is-action" ng-click="conf_ui_sort_file = 'name'; conf_ui_sort_dir='toString()'; reverseDir=!reverseDir; reverse=reverseDir;">
+                    <span class="is-sortable">Name <i class="fa fa-sort"></i></span>
+                </td>
+                <td class="table-type is-action" ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">
+                    <span class="is-sortable">Type <i class="fa fa-sort"></i></span>
+                </td>
+                <td class="table-size is-action" ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">
+                    <span class="is-sortable">Size <i class="fa fa-sort"></i></span>
+                </td>
+                <td class="table-date is-action" ng-click="conf_ui_sort_file = 'atime'; reverse=!reverse">
+                    <span class="is-sortable">Date <i class="fa fa-sort"></i></span>
+                </td>
                 <td class="table-action"></td>
             </thead>
 
