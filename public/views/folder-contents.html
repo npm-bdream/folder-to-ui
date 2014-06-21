@@ -55,7 +55,11 @@
                     <td>{{file.ext}}</td>
                     <td>{{file.size}}</td>
                     <td>{{file.atime}}</td>
-                    <td><i class="fa fa-trash-o icon is-action"></i><i class="fa fa-pencil-square-o icon is-action"></i><i class="fa fa-cloud-download icon is-action"></i></td>
+                    <td>
+                        <i class="fa fa-trash-o icon is-action"></i>
+                        <i class="fa fa-pencil-square-o icon is-action"></i>
+                        <a ng-href="/sharing{{file.fpath}}"><i class="fa fa-cloud-download icon is-action"></i></a>
+                    </td>
                 </tr>
             </tbody>
         </table>

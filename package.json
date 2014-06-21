@@ -14,7 +14,7 @@
   "keywords": [],
   "license": "",
   "dependencies": {
-    "folder-contents": "x.x.x",
+    "folder-contents": "^1.1.0",
     "colors": "^0.6.2",
     "express": "^4.4.3",
     "morgan": "^1.1.1",

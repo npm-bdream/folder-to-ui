@@ -30,6 +30,13 @@ app.set('title', 'folder-to-ui');
 if (Config.server_public_base == "") Config.server_public_base = __dirname;
 if (Config.server_sharing_base == "") Config.server_sharing_base = __dirname;
 
+// simple logger
+app.all(Config.server_sharing_ui_path+'/*',function(req, res, next){
+    //res.send("404","Test restricted access");
+    res.redirect('/403.html');
+    //next();
+});
+
 Util.log(("Public web folder : " + Config.server_public_base + Config.server_public_dir).help);
 app.use(Express.static( Config.server_public_base + Config.server_public_dir ));
 
@@ -39,17 +46,19 @@ app.use(Config.server_sharing_ui_path, Express.static( Config.server_sharing_bas
 app.use(BodyParser.json());       // to support JSON-encoded bodies
 app.use(BodyParser.urlencoded()); // to support URL-encoded bodies
 
+
+
 app.post('/api/folder/list', function(req, res){
 
     /*
     Util.log("Request body : ".help);
-    Util.log(JSON.stringify(req.body).input);
     */
 
     var options = req.body;
 
     // force usage of basepath to false
     options.useBasePath = false;
+    options.useFullPath = true;
     // force to use server base path
     options.path = Config.server_sharing_base + Config.server_sharing_dir + options.path;
 
@@ -69,5 +78,7 @@ app.post('/api/folder/delete', function(req, res){});
 app.post('/api/folder/rename', function(req, res){});
 app.post('/api/file/delete', function(req, res){});
 app.post('/api/file/rename', function(req, res){});
+
+
 
 app.listen(Config.server_port);
