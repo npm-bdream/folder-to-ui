@@ -11,9 +11,6 @@
     font-family: "Raleway",Arial,sans-serif;
     background-color:#F9F9F9;
 }
-
-
-
 /**************************************************************
 *   Header
 **************************************************************/
@@ -77,6 +74,27 @@
     width: 1000px;
     margin: 0px auto;
 
+}
+
+/**************************************************************
+*   AUTH
+**************************************************************/
+
+.default .auth-block {
+    font-size: 1.500em;
+    background-color: rgba(149, 165, 166, 0.1);
+    width: 300px;
+    margin: 50px auto;
+    padding: 50px;
+}
+
+.default .auth-block .desc {
+    width: 300px;
+    margin: 0 0 10px 0;
+}
+
+.default .auth-block input {
+    width: 300px;
 }
 
 /**************************************************************

@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="menu" ng-cloak>
+    <div class="menu" ng-cloak ng-if="conf_ui_logged == true">
         <div class="content">
             <span class="element left" ng-click="changeView('home')"><li class="fa fa-home"></li> Home</span>
 
@@ -38,7 +38,23 @@
         </div>
     </div>
 
-    <div ng-view ng-cloak></div>
+    <div class="menu" ng-cloak ng-if="conf_ui_logged == false">
+        <div class="content">
+            <span class="element left" ng-click=""><li class="fa fa-user"></li> Login</span>
+        </div>
+    </div>
+
+    <div class="auth" ng-cloak ng-if="conf_ui_logged == false">
+        <div class="content">
+            <div class="auth-block">
+                <div><div class="desc">Username : </div><input type="textinput"></div>
+                <div><div class="desc">Password : </div><input type="textinput"></div>
+                <div><div class="desc"> </div><input type="button" value="Login" ng-click="test()"></div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-view ng-cloak ng-if="conf_ui_logged == true"></div>
 
     <script src="https://code.angularjs.org/1.2.9/angular.js"></script>
     <script src="https://code.angularjs.org/1.2.9/angular-route.js"></script>

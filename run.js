@@ -32,10 +32,10 @@ var db = new Sqlite3.Database(database);
 db.serialize(function() {
     if(!databaseExists) {
         db.run("CREATE TABLE users (login TEXT,password TEXT,email TEXT )");
-        db.run("CREATE TABLE server_allow_ip (ip TEXT UNIQUE)");
-        db.run("CREATE TABLE server_ignore_extension (ext TEXT UNIQUE)");
-        db.run("CREATE TABLE server_ignore_file (file TEXT UNIQUE)");
-        db.run("CREATE TABLE server_ignore_folder (folder TEXT UNIQUE)");
+        db.run("CREATE TABLE server_allow_ip (value TEXT UNIQUE)");
+        db.run("CREATE TABLE server_ignore_extension (value TEXT UNIQUE)");
+        db.run("CREATE TABLE server_ignore_file (value TEXT UNIQUE)");
+        db.run("CREATE TABLE server_ignore_folder (value TEXT UNIQUE)");
 
         var shaObj = new jsSHA("admin", "TEXT");
         var hash = shaObj.getHash("SHA-512", "HEX");
