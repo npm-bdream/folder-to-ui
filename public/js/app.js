@@ -3,6 +3,10 @@ var folderToUiApp = angular.module('folder-to-ui', [
     'folderToUiAppControllers'
 ]);
 
+folderToUiApp.run(['$route', function($route)  {
+    $route.reload();
+}]);
+
 folderToUiApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
@@ -21,10 +25,7 @@ folderToUiApp.config(['$routeProvider',
             when('/about', {
                 templateUrl: './views/about.html',
                 controller: 'AboutCtrl'
-            }).
-            otherwise({
-                redirectTo: '/about'
-            });
+            })
     }]);
 
 var folderToUiAppControllers = angular.module('folderToUiAppControllers', []);

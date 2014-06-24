@@ -1,15 +1,24 @@
-folderToUiAppControllers.controller('MainCtrl', ['$scope','$location', function($scope,$location){
+folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', function($scope,$http,$location){
     $scope.param_ui_logged = false;
     $scope.param={};
     $scope.param.theme = 'default';
-    alert($scope.param_ui_theme);
-    $scope.updateScope = function () {
-        $scope.param_ui_theme = 'default';
-    };
+    $scope.param.username = '';
+    $scope.param.password = '';
     $scope.changeView = function(view){
         $location.path(view); // path not hash
     };
-    $scope.test = function () {
-        $scope.param_ui_logged = true;
+    $scope.login = function () {
+
+        var params = {};
+        params.username = $scope.param.username;
+        params.password = $scope.param.password;
+        console.log(params);
+        $http.post('/api/auth', params).success(function (data) {
+            if ( data.username ) {
+                $scope.param_ui_logged = true;
+                $scope.changeView('folder');
+
+            }
+        });
     };
 }]);
