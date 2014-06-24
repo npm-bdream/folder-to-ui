@@ -23,7 +23,7 @@ folderToUiApp.config(['$routeProvider',
                 controller: 'AboutCtrl'
             }).
             otherwise({
-                redirectTo: '/folder'
+                redirectTo: '/about'
             });
     }]);
 

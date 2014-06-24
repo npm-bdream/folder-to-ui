@@ -1,10 +1,15 @@
 folderToUiAppControllers.controller('MainCtrl', ['$scope','$location', function($scope,$location){
-    $scope.conf_ui_logged = false;
-    $scope.conf_ui_theme = 'default';
+    $scope.param_ui_logged = false;
+    $scope.param={};
+    $scope.param.theme = 'default';
+    alert($scope.param_ui_theme);
+    $scope.updateScope = function () {
+        $scope.param_ui_theme = 'default';
+    };
     $scope.changeView = function(view){
         $location.path(view); // path not hash
     };
     $scope.test = function () {
-        $scope.conf_ui_logged = true;
+        $scope.param_ui_logged = true;
     };
 }]);

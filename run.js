@@ -19,6 +19,9 @@ Colors.setTheme({
     debug: 'blue'
 });
 
+/****************************************************************
+* INIT
+****************************************************************/
 
 var database = __dirname + "/test.db";
 var databaseExists = Fs.existsSync(database);
@@ -61,8 +64,10 @@ app.use(BodyParser.urlencoded()); // to support URL-encoded bodies
 app.use(Session({ secret: 'My great secret', cookie: { maxAge: 60000 }}));
 app.use(CookieParser());
 
-app.all(Config.server_sharing_ui_path+'/*',function(req, res, next){
+// External filter
+app.all('*/*',function(req, res, next){
     //res.send("404","Test restricted access");
+    /*
     var testToreturn = "toto";
     db.serialize(function() {
 
@@ -72,8 +77,25 @@ app.all(Config.server_sharing_ui_path+'/*',function(req, res, next){
         });
 
     });
+    */
     //res.redirect('/403.html');
-    //next();
+    next();
+});
+
+// Ip filter
+app.all('*/*',function(req, res, next){
+    next();
+});
+
+app.post('/api/login', function(req, res){
+
+    var params = req.body;
+
+});
+
+// Other filters
+app.all('*/*',function(req, res, next){
+    next();
 });
 
 Util.log(("Public web folder : " + Config.server_public_base + Config.server_public_dir).bold.info);
@@ -81,6 +103,9 @@ app.use(Express.static( Config.server_public_base + Config.server_public_dir ));
 
 Util.log(("Sharing web folder : " + Config.server_sharing_base + Config.server_sharing_dir).bold.info);
 app.use(Config.server_sharing_ui_path, Express.static( Config.server_sharing_base + Config.server_sharing_dir ));
+
+
+
 
 
 app.post('/api/folder/list', function(req, res){
