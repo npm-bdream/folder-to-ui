@@ -3,23 +3,28 @@
 /**************************************************************
 *   Global
 **************************************************************/
+
 @import url(http://necolas.github.io/normalize.css/3.0.1/normalize.css);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,800);
-
 
 .default {
   color: @theme-main-color-text;
   font-size: @theme-main-em;
-  font-family: "Raleway",Arial,sans-serif;
+  font-family: @theme-main-font-family;
   background-color:@theme-main-color-bg;
 }
+
+.default .content {
+  width: 1000px;
+  margin: 0px auto;
+}
+
 /**************************************************************
 *   Header
 **************************************************************/
 
-
 .default .header {
-  background-color: @theme-menu-color-bg;
+  background-color: @theme-header-color-bg;
   padding: 20px 0px;
 }
 .default .header .title {
@@ -36,21 +41,20 @@
 **************************************************************/
 
 .default .menu{
-  background-color: rgba(64, 77, 91, 1);
-  color: #B4B4B4;
+  background-color: @theme-menu-color-bg;
   font-size: 1.500em;
   padding: 15px 0px;
   height: 25px;
 }
 
 .default .menu .element{
-  color: #ff5533;
+  color: @theme-menu-color-nav;
   font-weight: 500;
   cursor: pointer;
 }
 
 .default .menu .element li{
-  color: #B4B4B4;
+  color: @theme-menu-color-icon;
   margin-right: 5px;
 }
 
@@ -66,17 +70,6 @@
 .default .menu .right{
   margin-left: 15px;
   float: right;
-}
-
-.default .options {
-  background-color: rgba(149, 165, 166, 0.1);
-  padding: 20px 0px;
-}
-
-.default .content {
-  width: 1000px;
-  margin: 0px auto;
-
 }
 
 /**************************************************************
@@ -108,6 +101,15 @@
 }
 
 /**************************************************************
+*   OPTIONS
+**************************************************************/
+
+.default .options {
+  background-color: rgba(149, 165, 166, 0.1);
+  padding: 20px 0px;
+}
+
+/**************************************************************
 *   TABLE CONTENT
 **************************************************************/
 
@@ -118,10 +120,8 @@
 }
 
 .default .table-content caption{
-
   font-size: 1.200em;
   height: 40px;
-
   text-align: left;
 }
 
