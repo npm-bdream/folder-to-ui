@@ -4,6 +4,15 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
     $scope.param.theme = 'default';
     $scope.param.username = '';
     $scope.param.password = '';
+
+    $scope.session = function () {
+        $http.get('/api/session').success(function (data) {
+            $scope.param_ui_logged = true;
+        });
+    };
+
+    $scope.session();
+
     $scope.changeView = function(view){
         $location.path(view); // path not hash
     };
