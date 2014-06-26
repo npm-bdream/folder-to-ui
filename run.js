@@ -11,6 +11,8 @@ var Express = require('express'),
     CookieParser = require('cookie-parser'),
     Session = require('express-session');
 
+
+
 Colors.setTheme({
     info: 'green',
     verbose: 'cyan',
@@ -34,7 +36,8 @@ if(!databaseExists) {
 var db = new Sqlite3.Database(database);
 db.serialize(function() {
     if(!databaseExists) {
-        db.run("CREATE TABLE _users (username TEXT,password TEXT,email TEXT )");
+        db.run("CREATE TABLE _users (username TEXT, password TEXT, email TEXT)");
+        db.run("CREATE TABLE _sessions (sessionId TEXT, cookieSid TEXT, userId TEXT, ip TEXT)");
         db.run("CREATE TABLE _server_allow_ip (value TEXT UNIQUE)");
         db.run("CREATE TABLE _server_ignore_extension (value TEXT UNIQUE)");
         db.run("CREATE TABLE _server_ignore_file (value TEXT UNIQUE)");
@@ -48,7 +51,7 @@ db.serialize(function() {
         stmt.finalize();
     }
     db.each("SELECT rowid AS id, password, username, email FROM _users", function(err, row) {
-        Util.log(row.id + ": " + row.password);
+        //Util.log(row.id + ": " + row.password);
     });
 });
 
@@ -61,12 +64,16 @@ var app = Express();
 //app.use(Morgan());
 app.use(BodyParser.json());       // to support JSON-encoded bodies
 app.use(BodyParser.urlencoded()); // to support URL-encoded bodies
-app.use(Session({ secret: 'My great secret', cookie: { maxAge: 600000 }}));
+app.use(Session({ secret: 'My great secret', cookie: { maxAge: 60*60*1000 }}));
 app.use(CookieParser());
 
-// External filter
+var o=0;
+// Filter to use a token
 app.all('*/*',function(req, res, next){
-    console.log(JSON.stringify(req.cookies));
+    if (o==0) {
+        o++;
+        console.log(req);
+    }
     //res.send("404","Test restricted access");
     /*
     var testToreturn = "toto";
@@ -85,12 +92,6 @@ app.all('*/*',function(req, res, next){
 
 // Ip filter
 app.all('*/*',function(req, res, next){
-    next();
-});
-
-// Session filter
-app.all('*/*',function(req, res, next){
-
     next();
 });
 
@@ -134,10 +135,6 @@ app.use(Express.static( Config.server_public_base + Config.server_public_dir ));
 
 Util.log(("Sharing web folder : " + Config.server_sharing_base + Config.server_sharing_dir).bold.info);
 app.use(Config.server_sharing_ui_path, Express.static( Config.server_sharing_base + Config.server_sharing_dir ));
-
-
-
-
 
 app.post('/api/folder/list', function(req, res){
 

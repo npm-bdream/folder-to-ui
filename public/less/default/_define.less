@@ -1,15 +1,28 @@
 /* Define main */
 @theme-main-color-text: #404D5B;
 @theme-main-color-bg: #F9F9F9;
-@theme-main-em: 0.857em;
+@theme-main-em: 0.875em;
 @theme-main-font-family : "Raleway",Arial,sans-serif;
 
 /* Define header */
 @theme-header-color-bg: #F9F9F9;
 @theme-header-color-subtitle: #C3C8CD;
 
-
 /* Define menu */
 @theme-menu-color-bg: #404D5B;
 @theme-menu-color-icon: #F9F9F9;
 @theme-menu-color-nav : #ff5533;
+
+/* Functions */
+
+.theme-radius(@radius: 3px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.theme-shadow(@color:#C3C8CD, @x:3px, @y:3px, @blur:3px, @spread:0px) {
+  -webkit-box-shadow: @color @x @y @blur @spread;
+  -moz-box-shadow: @color @x @y @blur @spread;
+  box-shadow: @color @x @y @blur @spread;
+}

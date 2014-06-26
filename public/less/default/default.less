@@ -19,20 +19,65 @@
   margin: 0px auto;
 }
 
+input,
+select,
+textarea,
+.button {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 30px;
+  padding: 5px;
+  color: #606060;
+}
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border:@theme-main-color-text solid 1px ;
+}
+
+.button:focus,
+input[type="button"]:focus {
+  outline: none;
+  border: solid 1px #999999;
+}
+.button,
+input[type="button"] {
+  outline: none;
+  border: solid 1px #dcdcdc;
+  background: @theme-main-color-bg;;
+  color: #606060;
+  padding: 5px 15px;
+}
+
+.button:hover,
+input[type="button"]:hover {
+  outline: none;
+  border: solid 1px #999999;
+  background: #ffffff;
+  cursor: pointer;
+  color: @theme-menu-color-nav;
+}
+
+
+
+
 /**************************************************************
 *   Header
 **************************************************************/
 
 .default .header {
   background-color: @theme-header-color-bg;
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 .default .header .title {
   font-weight: 800;
-  font-size: 4.000em;
+  font-size: 3.000em;
 }
 .default .header .sub-title {
-  font-size: 2.500em;
+  font-size: 2.000em;
   color:@theme-header-color-subtitle;
 }
 
@@ -43,7 +88,7 @@
 .default .menu{
   background-color: @theme-menu-color-bg;
   font-size: 1.500em;
-  padding: 15px 0px;
+  padding: 10px 0px;
   height: 25px;
 }
 
@@ -76,18 +121,19 @@
 *   AUTH
 **************************************************************/
 
-.default .auth-block {
-  font-size: 1.200em;
+.default .auth {
+  font-size: 1.000em;
   background-color: rgba(149, 165, 166, 0.1);
+  padding: 100px 0;
+}
+
+.default .auth-block {
   width: 300px;
-  margin: 50px auto;
+  margin: 0px auto;
   padding: 50px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: #C3C8CD 5px 5px 5px;
-  -moz-box-shadow: #C3C8CD 5px 5px 5px;
-  box-shadow: #C3C8CD 5px 5px 5px;
+  background-color: @theme-main-color-bg;
+  .theme-radius(8px);
+  .theme-shadow();
 }
 
 .default .auth-block .desc {
@@ -174,19 +220,13 @@
   font-weight: 500;
   margin: 3px;
   padding: 5px;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-
+  .theme-radius(3px);
 }
 
 .default .table-content .is-iron-folder:hover{
 
   background-color: #404D5B;
-  -webkit-box-shadow: #C3C8CD 5px 5px 5px;
-  -moz-box-shadow: #C3C8CD 5px 5px 5px;
-  box-shadow: #C3C8CD 5px 5px 5px;
+  .theme-shadow();
 }
 
 .default .table-content .is-action {
@@ -196,17 +236,12 @@
 .default .table-content .is-sortable{
   font-weight: 800;
   padding: 5px;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  .theme-radius(3px);
 }
 
 .default .table-content .is-sortable:hover{
   background-color: #C3C8CD;
-  -webkit-box-shadow: #C3C8CD 5px 5px 5px;
-  -moz-box-shadow: #C3C8CD 5px 5px 5px;
-  box-shadow: #C3C8CD 5px 5px 5px;
+  .theme-shadow();
 }
 
 
