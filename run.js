@@ -54,33 +54,58 @@ app.all('*/*',function(req, res, next){
     next();
 });
 
-app.post('/api/auth', function(req, res){
-    var username = req.body.username;
-    var password = req.body.password;
-    DatabaseManager.getUser(username,password,function(err, row){
-        if(row){
-            DatabaseManager.addSession(req,row.id);
-            // TODO add connexion history ?
-            res.send(row);
-        } else {
-            Util.log(("Error 404 : "+ req.method + " " + req.url).error);
-            res.send('404','Not found');
-        }
-    });
-});
-
 Util.log(("Public web folder : " + Config.server_public_base + Config.server_public_dir).bold.info);
 app.use(Express.static( Config.server_public_base + Config.server_public_dir ));
 
-app.get('/api/session', function(req, res){
-    DatabaseManager.sessionExist(req,null,function(exist){
-        if (exist) res.send('200');
-        else {
-            Util.log(("Error 403 : "+ req.method + " " + req.url).error);
-            res.send('403','Forbiden');
-        }
-    });
+/*
+app.post('/api/auth', function(req, res){
+
 });
+
+app.get('/api/session', function(req, res){
+
+});
+*/
+
+// Session is needed for next methods of api
+app.all('*/*',function(req, res, next){
+    // if auth request
+    if (req.url == "/api/auth"){
+        var username = req.body.username;
+        var password = req.body.password;
+        DatabaseManager.getUser(username,password,function(err, row){
+            if(row){
+                DatabaseManager.addSession(req,row.id);
+                // TODO add connexion history ?
+                res.send(row);
+            } else {
+                Util.log(("Error 404 : "+ req.method + " " + req.url).error);
+                res.send('404','Not found');
+            }
+        });
+    // if session auth request
+    } else if (req.url == "/api/session") {
+        DatabaseManager.getSessionUser(req,null,function(err, row){
+            if (row) {
+                res.send(row);
+            } else {
+                Util.log(("Error 403 : "+ req.method + " " + req.url).error);
+                res.send('403','Forbiden');
+            }
+        });
+    // else test session for next steps
+    } else {
+        DatabaseManager.sessionExist(req,null,function(exist){
+            if (exist) next();
+            else {
+                Util.log(("Error 403 : "+ req.method + " " + req.url).error);
+                res.send('403','Forbiden');
+            }
+        });
+    }
+});
+
+
 
 Util.log(("Sharing web folder : " + Config.server_sharing_base + Config.server_sharing_dir).bold.info);
 app.use(Config.server_sharing_ui_path, Express.static( Config.server_sharing_base + Config.server_sharing_dir ));

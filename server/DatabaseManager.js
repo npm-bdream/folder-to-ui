@@ -74,6 +74,23 @@ DatabaseManager.getUser = function (username,password,returnFunc) {
  * Sessions & cookies
  *******************************************/
 
+DatabaseManager.getSessionUser = function (req,userid,returnFunc) {
+    var session = DatabaseManager.utils.formatSession(req,userid);
+    if(session.sid && session.userip && session.expires && session.cookies) {
+        var db = DatabaseManager.db;
+        var sql = "SELECT u.rowid AS id, u.username, u.email FROM _sessions s ";
+        sql += "JOIN _users u ON s.userid = u.rowid ";
+        sql += "WHERE s.userip = '" + session.userip + "' ";
+        if (userid != null) sql += "AND s.userid = '" + session.userid + "' ";
+        sql += "AND s.sid = '" + session.sid + "' ";
+        sql += "AND s.cookies = '" + session.cookies + "' ";
+
+        db.get(sql, function (err, row) {
+            returnFunc(err, row);
+        });
+    }
+};
+
 DatabaseManager.sessionExist = function (req,userid,returnFunc) {
     var session = DatabaseManager.utils.formatSession(req,userid);
     if(session.sid && session.userip && session.expires && session.cookies) {
@@ -97,8 +114,7 @@ DatabaseManager.getAllSessions = function () {
     var db = DatabaseManager.db;
     var sql = "SELECT s.rowid AS id, s.userid, s.userip, s.cookies, u.username FROM _sessions s JOIN _users u ON s.userid = u.rowid";
     db.all(sql, function(err, rows) {
-        console.log(err);
-        console.log(rows);
+
 
     });
 };
