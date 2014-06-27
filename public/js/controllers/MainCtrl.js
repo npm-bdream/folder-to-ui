@@ -7,6 +7,7 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
 
     $scope.session = function () {
         $http.get('/api/session').success(function (data) {
+            $scope.param.username = data.username;
             $scope.param_ui_logged = true;
         });
     };

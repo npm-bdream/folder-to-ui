@@ -10,9 +10,9 @@ folderToUiApp.run(['$route', function($route)  {
 folderToUiApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/home', {
-                templateUrl: './views/home.html',
-                controller: 'HomeCtrl'
+            when('/user', {
+                templateUrl: './views/user.html',
+                controller: 'UserCtrl'
             }).
             when('/folder', {
                 templateUrl: './views/folder-contents.html',

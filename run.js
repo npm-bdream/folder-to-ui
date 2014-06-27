@@ -10,6 +10,12 @@ var Express = require('express'),
     DatabaseManager = require('./server/DatabaseManager.js');
 
 
+var cronJob = require('cron').CronJob;
+new cronJob('* * * * * *', function(){
+    console.log('You will see this message every second');
+}, null, true, "America/Los_Angeles");
+
+
 Colors.setTheme({
     info: 'green',
     verbose: 'cyan',
@@ -37,14 +43,14 @@ app.use(Session({ secret: 'My great secret', cookie: { maxAge: 5*60*1000 }}));
 app.use(CookieParser());
 
 // Filter to use a token
-app.all('*/*',function(req, res, next){
+app.all('/media/token/*',function(req, res, next){
     //console.log(req.cookies);
-    Util.log(("Request : "+ req.method + " " + req.url).service);
     next();
 });
 
 // Ip filter
 app.all('*/*',function(req, res, next){
+    Util.log(("Request : "+ req.method + " " + req.url).service);
     next();
 });
 
