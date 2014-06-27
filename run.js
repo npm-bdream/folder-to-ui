@@ -9,12 +9,12 @@ var Express = require('express'),
     Session = require('express-session'),
     DatabaseManager = require('./server/DatabaseManager.js');
 
-
+/*
 var cronJob = require('cron').CronJob;
-new cronJob('* * * * * *', function(){
+new cronJob('0 * * * * *', function(){
     console.log('You will see this message every second');
 }, null, true, "America/Los_Angeles");
-
+*/
 
 Colors.setTheme({
     info: 'green',
