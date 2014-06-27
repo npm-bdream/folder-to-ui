@@ -38,7 +38,7 @@ var app = Express();
 
 //app.use(Morgan());
 app.use(BodyParser.json());       // to support JSON-encoded bodies
-app.use(BodyParser.urlencoded()); // to support URL-encoded bodies
+app.use(BodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.use(Session({ secret: 'My great secret', cookie: { maxAge: 5*60*1000 }}));
 app.use(CookieParser());
 
@@ -104,8 +104,6 @@ app.all('*/*',function(req, res, next){
         });
     }
 });
-
-
 
 Util.log(("Sharing web folder : " + Config.server_sharing_base + Config.server_sharing_dir).bold.info);
 app.use(Config.server_sharing_ui_path, Express.static( Config.server_sharing_base + Config.server_sharing_dir ));

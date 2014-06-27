@@ -147,12 +147,20 @@ input[type="button"]:hover {
 }
 
 /**************************************************************
-*   OPTIONS
+*   Views title
 **************************************************************/
 
-.default .options {
-  background-color: rgba(149, 165, 166, 0.1);
-  padding: 20px 0px;
+.default .view-title {
+  background-color: #F1F3F3;
+  padding: 12px 0px;
+}
+
+.default .view-title .title {
+  font-size: 2.000em;
+}
+
+.default .view-title .float {
+  float: right;
 }
 
 /**************************************************************
@@ -239,11 +247,14 @@ input[type="button"]:hover {
   .theme-radius(3px);
 }
 
-.default .table-content .is-sortable:hover{
-  background-color: #C3C8CD;
-  .theme-shadow();
+.default .table-content .is-sortable i{
+  margin-left: 5px;
+  color: #C3C8CD;
 }
 
+.default .table-content .is-sortable:hover i {
+  color: #ff5533;
+}
 
 
 

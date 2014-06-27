@@ -18,9 +18,9 @@ folderToUiApp.config(['$routeProvider',
                 templateUrl: './views/folder-contents.html',
                 controller: 'FolderContentCtrl'
             }).
-            when('/settings', {
-                templateUrl: './views/settings.html',
-                controller: 'SettingsCtrl'
+            when('/server', {
+                templateUrl: './views/server.html',
+                controller: 'ServerCtrl'
             }).
             when('/about', {
                 templateUrl: './views/about.html',

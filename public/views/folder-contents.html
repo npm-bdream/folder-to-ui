@@ -1,16 +1,11 @@
-<div class="options">
+<div class="view-title">
     <div class="content">
-        Browsing mode : <select ng-model="conf_ui_browsing" ng-change="postRequestList('')">
-            <option value="browsing">Browsing simple</option>
-            <option value="browsing-all-simple">Browsing all</option>
-            <option value="browsing-all-ext">Browsing all by extension</option>
-            <option value="browsing-all-path">Browsing all by path</option>
-        </select> | Filter : <input type="text" ng-model="query" />
+        <span class="title"><li class="fa fa-folder-open"></li> <span>Folders</span></span>
+        <div class="float">Filter : <input type="text" ng-model="query" /></div>
     </div>
 </div>
 
-<div ng-if="conf_ui_browsing == 'browsing'">
-
+<div class="view-folder-content">
     <div class="content">
         <table class="table-content">
 
@@ -23,17 +18,17 @@
 
             <thead>
                 <td class="table-icon"></td>
-                <td class="is-action" ng-click="conf_ui_sort_file = 'name'; conf_ui_sort_dir='toString()'; reverseDir=!reverseDir; reverse=reverseDir;">
-                    <span class="is-sortable">Name <i class="fa fa-sort"></i></span>
+                <td class="is-action is-sortable" ng-click="conf_ui_sort_file = 'name'; conf_ui_sort_dir='toString()'; reverseDir=!reverseDir; reverse=reverseDir;">
+                    <span>Name <i class="fa fa-sort"></i></span>
                 </td>
-                <td class="table-type is-action" ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">
-                    <span class="is-sortable">Type <i class="fa fa-sort"></i></span>
+                <td class="table-type is-action is-sortable" ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">
+                    <span>Type <i class="fa fa-sort"></i></span>
                 </td>
-                <td class="table-size is-action" ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">
-                    <span class="is-sortable">Size <i class="fa fa-sort"></i></span>
+                <td class="table-size is-action is-sortable" ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">
+                    <span>Size <i class="fa fa-sort"></i></span>
                 </td>
-                <td class="table-date is-action" ng-click="conf_ui_sort_file = 'atime'; reverse=!reverse">
-                    <span class="is-sortable">Date <i class="fa fa-sort"></i></span>
+                <td class="table-date is-action is-sortable" ng-click="conf_ui_sort_file = 'atime'; reverse=!reverse">
+                    <span>Date <i class="fa fa-sort"></i></span>
                 </td>
                 <td class="table-action"></td>
             </thead>
@@ -64,74 +59,4 @@
             </tbody>
         </table>
     </div>
-</div>
-
-<div class="folder">
-
-    <div class="content" ng-if="conf_ui_browsing == 'browsing-all-simple'">
-
-        <div class="folder-list folder-list-title">
-            <div class="name" ng-click="conf_ui_sort_file = 'name'; conf_ui_sort_dir='toString()'; reverseDir=!reverseDir; reverse=reverseDir;">Name</div>
-            <div class="date" ng-click="conf_ui_sort_file = 'date'; reverse=!reverse">Date</div>
-            <div class="size" ng-click="conf_ui_sort_file = 'size'; reverse=!reverse">Size</div>
-            <div class="type" ng-click="conf_ui_sort_file = 'ext'; reverse=!reverse">Type</div>
-        </div>
-
-        <div class="folder-list is-folder" ng-repeat="folder in folders | filter:query | orderBy:conf_ui_sort_dir:reverseDir" ng-click="postRequestList(conf_folder_path+'/'+folder)">
-            <i class="fa fa-folder icon"></i>
-            <div class="name is-folder">{{folder}}</div>
-            <div class="date">-</div>
-            <div class="size">-</div>
-            <div class="type">-</div>
-        </div>
-
-        <div class="folder-list" ng-repeat="file in files | filter:query | orderBy:conf_ui_sort_file:reverse">
-            <i class="fa fa-file-o icon"></i>
-            <div class="name" ng-if="file.ext != ''">{{file.name}}.{{file.ext}}</div>
-            <div class="name" ng-if="file.ext == ''">{{file.name}}</div>
-            <div class="date">{{file.atime}}</div>
-            <div class="size">{{file.size}}</div>
-            <div class="type">{{file.ext}}</div>
-        </div>
-
-    </div>
-
-    <div class="content" ng-if="conf_ui_browsing == 'browsing-all-ext' || conf_ui_browsing == 'browsing-all-path'">
-
-        <div ng-repeat="(key, value) in exts">
-
-            <div class="folder-section">
-
-                <div ng-if="conf_ui_browsing == 'browsing-all-ext'">
-                    <div class="folder-section-ext" ng-if="key != ''">{{key}}</div>
-                    <div class="folder-section-ext" ng-if="key == ''">Without extension</div>
-                </div>
-
-                <div ng-if="conf_ui_browsing == 'browsing-all-path'">
-                    <div class="folder-section-path">{{key}}</div>
-
-                </div>
-
-                <div class="folder-list folder-list-title">
-                    <div class="name">Name</div>
-                    <div class="date">Date</div>
-                    <div class="size">Size</div>
-                    <div class="type">Type</div>
-                </div>
-
-                <div class="folder-list" ng-repeat="val in value">
-                    <i class="fa fa-file-o icon"></i>
-                    <div class="name" ng-if="val.ext != ''">{{val.name}}.{{val.ext}}</div>
-                    <div class="name" ng-if="val.ext == ''">{{val.name}}</div>
-                    <div class="date">{{val.atime}}</div>
-                    <div class="size">{{val.size}}</div>
-                    <div class="type">{{val.ext}}</div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </div>
