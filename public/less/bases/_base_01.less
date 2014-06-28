@@ -1,20 +1,11 @@
-@import "_define.less";
-
-/**************************************************************
-*   Global
-**************************************************************/
-
-@import url(http://necolas.github.io/normalize.css/3.0.1/normalize.css);
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,800);
-
-.default {
+body {
   color: @theme-main-color-text;
   font-size: @theme-main-em;
   font-family: @theme-main-font-family;
   background-color:@theme-main-color-bg;
 }
 
-.default .content {
+.content {
   width: 1000px;
   margin: 0px auto;
 }
@@ -63,20 +54,19 @@ input[type="button"]:hover {
 
 
 
-
 /**************************************************************
 *   Header
 **************************************************************/
 
-.default .header {
+.header {
   background-color: @theme-header-color-bg;
   padding: 10px 0px;
 }
-.default .header .title {
+.header .title {
   font-weight: 800;
   font-size: 3.000em;
 }
-.default .header .sub-title {
+.header .sub-title {
   font-size: 2.000em;
   color:@theme-header-color-subtitle;
 }
@@ -85,34 +75,34 @@ input[type="button"]:hover {
 *   Menu
 **************************************************************/
 
-.default .menu{
+.menu{
   background-color: @theme-menu-color-bg;
   font-size: 1.500em;
   padding: 10px 0px;
   height: 25px;
 }
 
-.default .menu .element{
+.menu .element{
   color: @theme-menu-color-nav;
   font-weight: 500;
   cursor: pointer;
 }
 
-.default .menu .element li{
+.menu .element li{
   color: @theme-menu-color-icon;
   margin-right: 5px;
 }
 
-.default .menu .separator{
+.menu .separator{
   margin: 0 10px;
 }
 
-.default .menu .left{
+.menu .left{
   float: left;
   margin-right: 15px;
 }
 
-.default .menu .right{
+.menu .right{
   margin-left: 15px;
   float: right;
 }
@@ -121,13 +111,13 @@ input[type="button"]:hover {
 *   AUTH
 **************************************************************/
 
-.default .auth {
+.auth {
   font-size: 1.000em;
   background-color: rgba(149, 165, 166, 0.1);
   padding: 100px 0;
 }
 
-.default .auth-block {
+.auth-block {
   width: 300px;
   margin: 0px auto;
   padding: 50px;
@@ -136,12 +126,12 @@ input[type="button"]:hover {
   .theme-shadow();
 }
 
-.default .auth-block .desc {
+.auth-block .desc {
   width: 300px;
   margin: 0 0 10px 0;
 }
 
-.default .auth-block input {
+.auth-block input {
   width: 300px;
   margin: 0 0 10px 0;
 }
@@ -150,16 +140,16 @@ input[type="button"]:hover {
 *   Views title
 **************************************************************/
 
-.default .view-title {
+.view-title {
   background-color: #F1F3F3;
   padding: 12px 0px;
 }
 
-.default .view-title .title {
+.view-title .title {
   font-size: 2.000em;
 }
 
-.default .view-title .float {
+.view-title .float {
   float: right;
 }
 
@@ -167,92 +157,92 @@ input[type="button"]:hover {
 *   TABLE CONTENT
 **************************************************************/
 
-.default .table-content{
+.table-content{
   width: 1000px;
   text-align: left;
   margin: 20px 0px;
 }
 
-.default .table-content caption{
+.table-content caption{
   font-size: 1.200em;
   height: 40px;
   text-align: left;
 }
 
-.default .table-content thead{
+.table-content thead{
   font-weight: 800;
   font-size: 1.200em;
   height: 30px;
   border-bottom: 1px solid #C3C8CD;
 }
 
-.default .table-content thead .table-date {
+.table-content thead .table-date {
   width: 150px;
 }
 
-.default .table-content thead .table-action,
-.default .table-content thead .table-type,
-.default .table-content thead .table-size {
+.table-content thead .table-action,
+.table-content thead .table-type,
+.table-content thead .table-size {
   width: 100px;
 }
 
-.default .table-content thead .table-icon {
+.table-content thead .table-icon {
   width: 40px;
 }
 
-.default .table-content tr {
+.table-content tr {
   height: 35px;
 }
 
-.default .table-content tr:hover .icon {
+.table-content tr:hover .icon {
   color: #404D5B;
 }
 
-.default .table-content caption .icon,
-.default .table-content tr .icon {
+.table-content caption .icon,
+.table-content tr .icon {
   padding: 0px 5px;
   font-size: 1.400em;
   color: #C3C8CD;
 }
 
-.default .table-content tr .icon:hover{
+.table-content tr .icon:hover{
   color: #ff5533;
 }
 
-.default .table-content .is-folder {
+.table-content .is-folder {
   color: #ff5533;
 }
 
 
-.default .table-content .is-iron-folder{
+.table-content .is-iron-folder{
   font-weight: 500;
   margin: 3px;
   padding: 5px;
   .theme-radius(3px);
 }
 
-.default .table-content .is-iron-folder:hover{
+.table-content .is-iron-folder:hover{
 
   background-color: #404D5B;
   .theme-shadow();
 }
 
-.default .table-content .is-action {
+.table-content .is-action {
   cursor: pointer;
 }
 
-.default .table-content .is-sortable{
+.table-content .is-sortable{
   font-weight: 800;
   padding: 5px;
   .theme-radius(3px);
 }
 
-.default .table-content .is-sortable i{
+.table-content .is-sortable i{
   margin-left: 5px;
   color: #C3C8CD;
 }
 
-.default .table-content .is-sortable:hover i {
+.table-content .is-sortable:hover i {
   color: #ff5533;
 }
 
@@ -267,22 +257,20 @@ input[type="button"]:hover {
 
 
 
-.default .folder-section{
+.folder-section{
   padding: 20px 0px;
 }
 
-.default .folder-section-ext{
+.folder-section-ext{
   font-size: 1.400em;
   color: #ff5533;
   overflow: hidden;
   height: 45px;
 }
-.default .folder-section-path{
+.folder-section-path{
   font-size: 1.400em;
   font-weight: 800;
   color: #ff5533;
   overflow: hidden;
   height: 45px;
 }
-
-

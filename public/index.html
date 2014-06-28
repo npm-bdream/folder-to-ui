@@ -5,12 +5,17 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>folder-to-ui</title>
-    <!-- Add needed css files -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/default.css">
+    <!-- Add needed css files
+        <link rel="stylesheet" href="css/default.css">
+        <link rel="stylesheet" href="css/dark.css">
+        <link rel="stylesheet" ng-href="{{param.theme}}">
+    -->
+
+    <link rel="stylesheet" ng-href="{{param.theme}}">
+
 </head>
 
-<body class="default" ng-class="param.theme">
+<body class="default">
 
     <!-- App Header -->
     <div ng-cloak ng-include src="'./templates/header.html'"></div>
