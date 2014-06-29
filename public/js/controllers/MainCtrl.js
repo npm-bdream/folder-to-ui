@@ -1,7 +1,7 @@
 folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', function($scope,$http,$location){
     $scope.param_ui_logged = false;
     $scope.param={};
-    $scope.param.theme = 'css/other01.css';
+    $scope.param.theme = 'css/glow-default.css';
     $scope.param.username = '';
     $scope.param.password = '';
 

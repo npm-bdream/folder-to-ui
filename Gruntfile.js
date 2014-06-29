@@ -16,10 +16,14 @@ module.exports = function (grunt) {
                     cleancss: true
                 },
                 files: {
-                    "./public/css/default.css":"./public/less/themes/default.less",
-                    "./public/css/dark.css":"./public/less/themes/dark.less",
-                    "./public/css/eco.css":"./public/less/themes/eco.less",
-                    "./public/css/other01.css":"./public/less/themes/other01.less"
+                    "./public/css/nutella-default.css":"./public/less/themes/nutella-default.less",
+                    "./public/css/nutella-electric.css":"./public/less/themes/nutella-electric.less",
+                    "./public/css/nutella-ubuntu.css":"./public/less/themes/nutella-ubuntu.less",
+                    "./public/css/nutella-velvety.css":"./public/less/themes/nutella-velvety.less",
+                    "./public/css/glow-default.css":"./public/less/themes/glow-default.less",
+                    "./public/css/glow-electric.css":"./public/less/themes/glow-electric.less",
+                    "./public/css/glow-ubuntu.css":"./public/less/themes/glow-ubuntu.less",
+                    "./public/css/glow-velvety.css":"./public/less/themes/glow-velvety.less"
                 }
             }
         }

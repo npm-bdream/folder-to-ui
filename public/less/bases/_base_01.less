@@ -1,8 +1,25 @@
+/**************************************************************
+*   Global
+**************************************************************/
+
+/* Functions */
+.theme-radius(@radius: 3px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+.theme-shadow(@color:@color-shadows, @x:3px, @y:3px, @blur:3px, @spread:0px) {
+  -webkit-box-shadow: @color @x @y @blur @spread;
+  -moz-box-shadow: @color @x @y @blur @spread;
+  box-shadow: @color @x @y @blur @spread;
+}
+/* Functions END */
+
 body {
-  color: @theme-main-color-text;
+  color: @color-app-text;
   font-size: @theme-main-em;
   font-family: @theme-main-font-family;
-  background-color:@theme-main-color-bg;
+  background-color:@color-app-bg;
 }
 
 .content {
@@ -19,47 +36,38 @@ textarea,
   box-sizing: border-box;
   min-height: 30px;
   padding: 5px;
-  color: #606060;
-}
-input[type="text"]:hover,
-input[type="password"]:hover,
-input[type="text"]:focus,
-input[type="password"]:focus,
-select:focus {
-  border:@theme-main-color-text solid 1px ;
+  background: @color-inputs-bg;
+  color: @color-inputs-text;
+  border:@color-inputs-border solid 1px ;
+
 }
 
-.button:focus,
-input[type="button"]:focus {
-  outline: none;
-  border: solid 1px #999999;
+input:hover,
+select:hover,
+textarea:hover,
+.button:hover {
+  border:@color-inputs-border-hover solid 1px ;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+.button:focus {
+  border:@color-inputs-border-focus solid 1px ;
+}
+
 .button,
 input[type="button"] {
   outline: none;
-  border: solid 1px #dcdcdc;
-  background: @theme-main-color-bg;;
-  color: #606060;
+  cursor: pointer;
   padding: 5px 15px;
 }
-
-.button:hover,
-input[type="button"]:hover {
-  outline: none;
-  border: solid 1px #999999;
-  background: #ffffff;
-  cursor: pointer;
-  color: @theme-menu-color-nav;
-}
-
-
 
 /**************************************************************
 *   Header
 **************************************************************/
 
 .header {
-  background-color: @theme-header-color-bg;
   padding: 10px 0px;
 }
 .header .title {
@@ -68,7 +76,7 @@ input[type="button"]:hover {
 }
 .header .sub-title {
   font-size: 2.000em;
-  color:@theme-header-color-subtitle;
+  color:@color-03;
 }
 
 /**************************************************************
@@ -76,20 +84,20 @@ input[type="button"]:hover {
 **************************************************************/
 
 .menu{
-  background-color: @theme-menu-color-bg;
+  background-color: @color-menu-bg;
   font-size: 1.500em;
   padding: 10px 0px;
   height: 25px;
 }
 
 .menu .element{
-  color: @theme-menu-color-nav;
+  color: @color-menu-text;
   font-weight: 500;
   cursor: pointer;
 }
 
 .menu .element li{
-  color: @theme-menu-color-icon;
+  color: @color-menu-ico;
   margin-right: 5px;
 }
 
@@ -113,7 +121,7 @@ input[type="button"]:hover {
 
 .auth {
   font-size: 1.000em;
-  background-color: rgba(149, 165, 166, 0.1);
+  background-color: @color-auth-bg;
   padding: 100px 0;
 }
 
@@ -121,7 +129,7 @@ input[type="button"]:hover {
   width: 300px;
   margin: 0px auto;
   padding: 50px;
-  background-color: @theme-main-color-bg;
+  background-color: @color-auth-block-bg;
   .theme-radius(8px);
   .theme-shadow();
 }
@@ -141,7 +149,7 @@ input[type="button"]:hover {
 **************************************************************/
 
 .view-title {
-  background-color: #F1F3F3;
+  background-color: @color-view-title-bg;
   padding: 12px 0px;
 }
 
@@ -173,7 +181,7 @@ input[type="button"]:hover {
   font-weight: 800;
   font-size: 1.200em;
   height: 30px;
-  border-bottom: 1px solid #C3C8CD;
+  border-bottom: 1px solid @color-view-folder-content-border;
 }
 
 .table-content thead .table-date {
@@ -194,23 +202,23 @@ input[type="button"]:hover {
   height: 35px;
 }
 
-.table-content tr:hover .icon {
-  color: #404D5B;
-}
-
 .table-content caption .icon,
 .table-content tr .icon {
   padding: 0px 5px;
   font-size: 1.400em;
-  color: #C3C8CD;
+  color: @color-view-folder-content-ico;
+}
+
+.table-content tr:hover .icon {
+  color: @color-view-folder-content-tr-hover-ico;
 }
 
 .table-content tr .icon:hover{
-  color: #ff5533;
+  color: @color-view-folder-content-tr-ico-hover;
 }
 
 .table-content .is-folder {
-  color: #ff5533;
+  color: @color-view-folder-content-folder-text;
 }
 
 
@@ -222,8 +230,7 @@ input[type="button"]:hover {
 }
 
 .table-content .is-iron-folder:hover{
-
-  background-color: #404D5B;
+  background-color: @color-view-folder-content-iron-hover-bg;
   .theme-shadow();
 }
 
@@ -239,38 +246,9 @@ input[type="button"]:hover {
 
 .table-content .is-sortable i{
   margin-left: 5px;
-  color: #C3C8CD;
+  color: @color-view-folder-content-sort-ico;
 }
 
 .table-content .is-sortable:hover i {
-  color: #ff5533;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.folder-section{
-  padding: 20px 0px;
-}
-
-.folder-section-ext{
-  font-size: 1.400em;
-  color: #ff5533;
-  overflow: hidden;
-  height: 45px;
-}
-.folder-section-path{
-  font-size: 1.400em;
-  font-weight: 800;
-  color: #ff5533;
-  overflow: hidden;
-  height: 45px;
+  color: @color-view-folder-content-sort-ico-hover;
 }

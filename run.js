@@ -39,7 +39,7 @@ var app = Express();
 //app.use(Morgan());
 app.use(BodyParser.json());       // to support JSON-encoded bodies
 app.use(BodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
-app.use(Session({ secret: 'My great secret', cookie: { maxAge: 5*60*1000 }}));
+app.use(Session({ secret: 'My great secret', cookie: { maxAge: 60*60*1000 }}));
 app.use(CookieParser());
 
 // Filter to use a token
