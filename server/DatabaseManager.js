@@ -18,6 +18,10 @@ DatabaseManager.initDatabase = function (databasePath) {
     }
     DatabaseManager.db = new Sqlite3.Database(databasePath);
     DatabaseManager.createDatabase(databaseExists);
+
+    // Remove all sessions
+    Util.log("Remove all sessions from DB.".bold.info);
+    DatabaseManager.removeAllSessions();
 };
 
 DatabaseManager.createDatabase = function (exists) {
@@ -148,7 +152,8 @@ DatabaseManager.removeSession = function () {
 
 };
 DatabaseManager.removeAllSessions = function () {
-
+    var db = DatabaseManager.db;
+    db.run("DELETE FROM _sessions");
 };
 DatabaseManager.clearAllSessions = function () {
 
