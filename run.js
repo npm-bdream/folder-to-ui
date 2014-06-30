@@ -107,13 +107,6 @@ app.all('*/*',function(req, res, next){
     }
 });
 
-app.delete('/api/session', function(req, res){
-    DatabaseManager.deleteCurrentSession(req,null,function(err){
-        if (!err) res.send(200);
-        else res.send('404','Not found');
-    });
-});
-
 Util.log(("Sharing web folder : " + Config.server_sharing_base + Config.server_sharing_dir).bold.info);
 app.use(Config.server_sharing_ui_path, Express.static( Config.server_sharing_base + Config.server_sharing_dir ));
 
@@ -136,6 +129,13 @@ app.post('/api/folder/list', function(req, res){
 
     res.send(jsonResult);
 
+});
+
+app.delete('/api/session', function(req, res){
+    DatabaseManager.deleteCurrentSession(req,null,function(err){
+        if (!err) res.send(200);
+        else res.send(404,'Not found');
+    });
 });
 
 app.post('/api/folder/delete', function(req, res){});

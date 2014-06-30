@@ -12,6 +12,8 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
             $scope.data.user = data;
             $scope.param.username = data.username;
             $scope.param_ui_logged = true;
+        }).error(function (data, status, headers, config){
+
         });
     };
 
@@ -31,6 +33,8 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
                 $scope.param_ui_logged = true;
                 $scope.changeView('folder');
             }
+        }).error(function (data, status, headers, config){
+
         });
     };
 
