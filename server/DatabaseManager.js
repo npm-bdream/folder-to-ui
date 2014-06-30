@@ -114,12 +114,11 @@ DatabaseManager.sessionExist = function (req,userid,returnFunc) {
     } else {}
 };
 
-DatabaseManager.getSessions = function () {
+DatabaseManager.getSessions = function (returnFunc) {
     var db = DatabaseManager.db;
     var sql = "SELECT s.rowid AS id, s.userid, s.userip, s.cookies, u.username FROM _sessions s JOIN _users u ON s.userid = u.rowid";
     db.all(sql, function(err, rows) {
-
-
+        returnFunc(err, rows);
     });
 };
 
@@ -127,8 +126,12 @@ DatabaseManager.getUserSession = function () {
 
 };
 
-DatabaseManager.getUserSessions = function () {
-
+DatabaseManager.getUserSessions = function (userid,returnFunc) {
+    var db = DatabaseManager.db;
+    var sql = "SELECT s.rowid AS id, s.userid, s.userip, s.cookies, u.username FROM _sessions s JOIN _users u ON s.userid = u.rowid WHERE s.userid = "+userid;
+    db.all(sql, function(err, rows) {
+        returnFunc(err, rows);
+    });
 };
 
 DatabaseManager.addSession = function (req,userid) {
@@ -151,6 +154,7 @@ DatabaseManager.addSession = function (req,userid) {
 DatabaseManager.removeSession = function () {
 
 };
+
 DatabaseManager.removeAllSessions = function () {
     var db = DatabaseManager.db;
     db.run("DELETE FROM _sessions");
