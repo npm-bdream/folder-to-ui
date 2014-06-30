@@ -101,10 +101,6 @@ input[type="button"] {
   margin-right: 5px;
 }
 
-.menu .separator{
-  margin: 0 10px;
-}
-
 .menu .left{
   float: left;
   margin-right: 15px;
@@ -154,8 +150,21 @@ input[type="button"] {
 }
 
 .view-title .title {
-  font-size: 2.000em;
+  font-size: 1.500em;
 }
+
+.view-title .is-action {
+  cursor: pointer;
+}
+
+.view-title .title .element {
+  margin-right: 10px;
+}
+
+.view-title .title .element li {
+  margin-right: 5px;
+}
+
 
 .view-title .float {
   float: right;
@@ -251,4 +260,25 @@ input[type="button"] {
 
 .table-content .is-sortable:hover i {
   color: @color-view-folder-content-sort-ico-hover;
+}
+
+/* User */
+
+.view-user {
+  padding-top: 20px;
+}
+
+/* form style */
+
+.option-lines{
+  width: 100%;
+}
+
+.option-lines tr{
+
+}
+
+.option-lines td{
+  min-height: 30px;
+  border-bottom: 1px solid @color-view-option-line-border;
 }

@@ -1,24 +1,17 @@
+
 <div class="view-title">
     <div class="content">
-        <span class="title"><li class="fa fa-user"></li> <span>User</span></span>
+        <span class="title">
+            <span class="element is-action" ng-click="userview.change_template('user-settings')"><li class="fa fa-cog"></li>Settings</span>
+            <span class="element is-action" ng-click="userview.change_template('user-password')"><li class="fa fa-key"></li>Password</span>
+            <span class="element is-action" ng-click="userview.change_template('user-sessions')"><li class="fa fa-shield"></li>Sessions</span>
+        </span>
         <div class="float"></div>
     </div>
 </div>
 
 <div class="view-user">
     <div class="content">
-        <span class="element right"><li class="fa fa-tint"></li>
-            <select ng-model="param.theme">
-                <option value="css/nutella-default.css">nutella-default</option>
-                <option value="css/nutella-electric.css">nutella-electric</option>
-                <option value="css/nutella-ubuntu.css">nutella-ubuntu</option>
-                <option value="css/nutella-velvety.css">nutella-velvety</option>
-                <option value="css/glow-default.css">glow-default</option>
-                <option value="css/glow-electric.css">glow-electric</option>
-                <option value="css/glow-ubuntu.css">glow-ubuntu</option>
-                <option value="css/glow-velvety.css">glow-velvety</option>
-            </select>
-        </span>
+        <div ng-include="userview.current_template"></div>
     </div>
 </div>
-

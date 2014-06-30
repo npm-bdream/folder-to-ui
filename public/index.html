@@ -21,7 +21,7 @@
     <div ng-cloak ng-include src="'./templates/header.html'"></div>
 
     <!-- App Login -->
-    <div ng-cloak ng-if="param_ui_logged == false" ng-include src="'./templates/login.html'"></div>
+    <div ng-cloak ng-hide="param_ui_logged" ng-include src="'./templates/login.html'"></div>
 
     <!-- App Main app start -->
     <div ng-cloak ng-if="param_ui_logged == true" ng-include src="'./templates/main.html'"></div>
