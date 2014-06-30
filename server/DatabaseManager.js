@@ -20,8 +20,8 @@ DatabaseManager.initDatabase = function (databasePath) {
     DatabaseManager.createDatabase(databaseExists);
 
     // Remove all sessions
-    Util.log("Remove all sessions from DB.".bold.info);
-    DatabaseManager.removeAllSessions();
+    Util.log("Delete all sessions from DB.".bold.info);
+    DatabaseManager.deleteAllSessions();
 };
 
 DatabaseManager.createDatabase = function (exists) {
@@ -151,11 +151,28 @@ DatabaseManager.addSession = function (req,userid) {
     } else {}
 };
 
-DatabaseManager.removeSession = function () {
-
+DatabaseManager.deleteCurrentSession = function (req,userid,returnFunc) {
+    var session = DatabaseManager.utils.formatSession(req,userid);
+    if(session.sid && session.userip && session.expires && session.cookies) {
+        var db = DatabaseManager.db;
+        var sql = "DELETE FROM _sessions WHERE ";
+        sql += "userip = '" + session.userip + "' ";
+        if (userid!=null) sql += "AND userid = '" + session.userid + "' ";
+        sql += "AND sid = '" + session.sid + "' ";
+        sql += "AND cookies = '" + session.cookies + "'";
+        db.run(sql, function (err) {
+            if ( err ) {
+                returnFunc(err);
+            } else {
+                returnFunc(err);
+            }
+        });
+    } else {
+        returnFunc("Session not find");
+    }
 };
 
-DatabaseManager.removeAllSessions = function () {
+DatabaseManager.deleteAllSessions = function () {
     var db = DatabaseManager.db;
     db.run("DELETE FROM _sessions");
 };

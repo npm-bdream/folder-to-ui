@@ -21,7 +21,6 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
         $location.path(view); // path not hash
     };
     $scope.login = function () {
-
         var params = {};
         params.username = $scope.param.username;
         params.password = $scope.param.password;
@@ -33,6 +32,17 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
                 $scope.changeView('folder');
             }
         });
+    };
+
+    $scope.logout = function () {
+        $http.delete('/api/session').success(function (data, status, headers, config) {
+            $scope.data.user = null;
+            $scope.param_ui_logged = false;
+        }).error(function (data, status, headers, config){
+
+        });
+
+
     };
 
 }]);

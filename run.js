@@ -84,7 +84,7 @@ app.all('*/*',function(req, res, next){
             }
         });
     // if session auth request
-    } else if (req.url == "/api/session") {
+    } else if (req.url == "/api/session" && req.method == "GET") {
         DatabaseManager.getSessionUser(req,null,function(err, row){
             if (row) {
                 res.send(row);
@@ -96,13 +96,22 @@ app.all('*/*',function(req, res, next){
     // else test session for next steps
     } else {
         DatabaseManager.sessionExist(req,null,function(exist){
-            if (exist) next();
+            if (exist){
+                next();
+            }
             else {
                 Util.log(("Error 403 : "+ req.method + " " + req.url).error);
                 res.send('403','Forbiden');
             }
         });
     }
+});
+
+app.delete('/api/session', function(req, res){
+    DatabaseManager.deleteCurrentSession(req,null,function(err){
+        if (!err) res.send(200);
+        else res.send('404','Not found');
+    });
 });
 
 Util.log(("Sharing web folder : " + Config.server_sharing_base + Config.server_sharing_dir).bold.info);
