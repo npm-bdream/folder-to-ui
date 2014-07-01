@@ -38,7 +38,8 @@ textarea,
   padding: 5px;
   background: @color-inputs-bg;
   color: @color-inputs-text;
-  border:@color-inputs-border solid 1px ;
+  border:@color-inputs-border solid 1px;
+  min-width: 250px;
 
 }
 
@@ -46,14 +47,14 @@ input:hover,
 select:hover,
 textarea:hover,
 .button:hover {
-  border:@color-inputs-border-hover solid 1px ;
+  border:@color-inputs-border-hover solid 1px;
 }
 
 input:focus,
 select:focus,
 textarea:focus,
 .button:focus {
-  border:@color-inputs-border-focus solid 1px ;
+  border:@color-inputs-border-focus solid 1px;
 }
 
 .button,
@@ -61,6 +62,11 @@ input[type="button"] {
   outline: none;
   cursor: pointer;
   padding: 5px 15px;
+}
+
+.button:active,
+input[type="button"]:active {
+  border:@color-inputs-border-active solid 1px;
 }
 
 /**************************************************************
@@ -262,23 +268,37 @@ input[type="button"] {
   color: @color-view-folder-content-sort-ico-hover;
 }
 
-/* User */
+/**************************************************************
+*   List table
+**************************************************************/
 
-.view-user {
-  padding-top: 20px;
+.list-table{
+  width: 1000px;
+  margin-top: 20px;
 }
 
-/* form style */
-
-.option-lines{
-  width: 100%;
-}
-
-.option-lines tr{
+.list-table thead{
+  font-weight: 800;
+  font-size: 1.200em;
 
 }
 
-.option-lines td{
-  min-height: 30px;
-  border-bottom: 1px solid @color-view-option-line-border;
+.list-table thead .title{
+  border-bottom: 1px solid @color-view-folder-content-border;
+  margin-bottom: 15px;
 }
+
+.user-password .list-table tr,
+.user-settings .list-table tr{
+  line-height: 40px;
+}
+
+.user-password .list-table tr td:first-child,
+.user-settings .list-table tr td:first-child{
+  width: 200px;
+}
+
+.user-password .list-table tr:first-child{
+  padding-top: 150px;
+}
+

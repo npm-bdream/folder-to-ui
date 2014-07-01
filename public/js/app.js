@@ -10,10 +10,6 @@ folderToUiApp.run(['$route', function($route)  {
 folderToUiApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/user', {
-                templateUrl: './views/user.html',
-                controller: 'UserCtrl'
-            }).
             when('/folder', {
                 templateUrl: './views/folder-contents.html',
                 controller: 'FolderContentCtrl'
@@ -25,6 +21,12 @@ folderToUiApp.config(['$routeProvider',
             when('/about', {
                 templateUrl: './views/about.html',
                 controller: 'AboutCtrl'
+            }). when('/user/settings', {
+                templateUrl: './views/user-settings.html',
+                controller: 'UserSettingsCtrl'
+            }). when('/user/sessions', {
+                templateUrl: './views/user-sessions.html',
+                controller: 'UserSessionsCtrl'
             })
     }]);
 

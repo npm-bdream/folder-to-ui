@@ -7,6 +7,12 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
     $scope.param.username = '';
     $scope.param.password = '';
 
+    $scope.onKeyPress = function(ev) {
+        if(ev.keyCode == 13){
+            $scope.login();
+        }
+    };
+
     $scope.session = function () {
         $http.get('/api/session').success(function (data) {
             $scope.data.user = data;
@@ -20,7 +26,7 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
     $scope.session();
 
     $scope.changeView = function(view){
-        $location.path(view); // path not hash
+        $location.path(view);
     };
     $scope.login = function () {
         var params = {};

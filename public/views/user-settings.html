@@ -1,0 +1,36 @@
+<div ng-include src="'./templates/user-menu.html'"></div>
+
+<div class="user-settings content">
+    <table class="list-table">
+        <thead><td colspan="2"><div class="title">General</div></td></thead>
+        <tbody>
+            <tr><td>Username : </td><td>{{data.user.username}}</td></tr>
+            <tr>
+                <td>Theme : </td>
+                <td><select ng-model="param.theme">
+                    <option value="css/nutella-default.css">nutella-default</option>
+                    <option value="css/nutella-electric.css">nutella-electric</option>
+                    <option value="css/nutella-ubuntu.css">nutella-ubuntu</option>
+                    <option value="css/nutella-velvety.css">nutella-velvety</option>
+                    <option value="css/glow-default.css">glow-default</option>
+                    <option value="css/glow-electric.css">glow-electric</option>
+                    <option value="css/glow-ubuntu.css">glow-ubuntu</option>
+                    <option value="css/glow-velvety.css">glow-velvety</option>
+                </select></td>
+            </tr>
+            <tr><td>Email : </td><td><input type="email" value="{{data.user.email}}" /></td></tr>
+            <tr><td></td><td><label class="button">Save</label></td></tr>
+        </tbody>
+    </table>
+</div>
+<div class="user-password content">
+    <table class="list-table">
+        <thead><td colspan="2"><div class="title">Change password</div></td></thead>
+        <tbody>
+            <tr><td>Old password : </td><td><input type="password" /></td></tr>
+            <tr><td>New password : </td><td><input type="password" /></td></tr>
+            <tr><td>Confirm new password : </td><td><input type="password" /></td></tr>
+            <tr><td></td><td><label class="button">Save</label></td></tr>
+        </tbody>
+    </table>
+</div>

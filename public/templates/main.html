@@ -1,13 +1,13 @@
 <!-- App Main app start -->
 <div class="menu">
     <div class="content">
-        <span class="element left" ng-click="changeView('user')"><li class="fa fa-user"></li> <span ng-bind="data.user.username">User</span></span>
+        <span class="element left" ng-click="changeView('user/settings')"><li class="fa fa-user"></li> <span ng-bind="data.user.username">User</span></span>
 
         <span class="element left" ng-click="changeView('folder')"><li class="fa fa-folder-open"></li> Folders</span>
 
         <span class="element left" ng-click="changeView('server')"><li class="fa fa-gears"></li> Server</span>
 
-        <span class="element right" ng-click="changeView('about')"><li class="fa fa-send"></li> About</span>
+        <span class="element left" ng-click="changeView('about')"><li class="fa fa-send"></li> About</span>
         <span class="element right" ng-click="logout()"><li class="fa fa-sign-out"></li> LogOut</span>
     </div>
 </div>
