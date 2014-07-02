@@ -1,1 +1,18 @@
 <div ng-include src="'./templates/user-menu.html'"></div>
+
+<div class="user-sessions content">
+    <table class="list-table" ng-repeat="session in data.sessions">
+        <thead><td colspan="2"><div class="title">Cookie for : {{session.username}}</div></td></thead>
+        <tbody>
+        <tr><td>IP : </td><td>{{session.userip}}</td></tr>
+        <tr><td>Cookie : </td><td>{{session.cookies}}</td></tr>
+        <tr><td>Started : </td><td>{{(session.expires - session.maxage) | date:'yyyy-MM-dd HH:mm:ss'}}</td></tr>
+        <tr><td>Expire : </td><td>{{session.expires | date:'yyyy-MM-dd HH:mm:ss'}}</td></tr>
+        </tbody>
+    </table>
+</div>
+<!--
+| date:'yyyy-MM-dd HH:mm:ss Z'
+1288323623006
+1404296974629.0
+-->

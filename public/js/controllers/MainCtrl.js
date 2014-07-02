@@ -51,8 +51,6 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
         }).error(function (data, status, headers, config){
 
         });
-
-
     };
 
 }]);

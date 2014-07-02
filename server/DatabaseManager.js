@@ -29,7 +29,7 @@ DatabaseManager.createDatabase = function (exists) {
         var db = DatabaseManager.db;
         db.serialize(function () {
             db.run("CREATE TABLE _users (username TEXT, password TEXT, email TEXT, theme TEXT, isAdmin INT)");
-            db.run("CREATE TABLE _sessions (userid TEXT, userip TEXT, sid TEXT, cookies TEXT, expires TEXT)");
+            db.run("CREATE TABLE _sessions (userid TEXT, userip TEXT, sid TEXT, cookies TEXT, expires INT, maxage INT)");
             db.run("CREATE TABLE _server_allow_ip (value TEXT UNIQUE)");
             db.run("CREATE TABLE _server_ignore_extension (value TEXT UNIQUE)");
             db.run("CREATE TABLE _server_ignore_file (value TEXT UNIQUE)");
@@ -38,16 +38,16 @@ DatabaseManager.createDatabase = function (exists) {
             var shaObj = new jsSHA("admin", "TEXT");
             var hash = shaObj.getHash("SHA-512", "HEX");
 
-            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?)");
-            stmt.run(["admin", hash, "npm.dream@gmail.com"]);
+            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?)");
+            stmt.run(["admin", hash, "npm.dream@gmail.com","css/glow-default.css",1]);
             stmt.finalize();
 
-            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?)");
-            stmt.run(["admin1", hash, "npm.dream@gmail.com"]);
+            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?)");
+            stmt.run(["admin1", hash, "npm.dream@gmail.com","css/nutella-default.css",0]);
             stmt.finalize();
 
-            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?)");
-            stmt.run(["admin2", hash, "npm.dream@gmail.com"]);
+            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?)");
+            stmt.run(["admin2", hash, "npm.dream@gmail.com","css/glow-electric.css",0]);
             stmt.finalize();
         });
     }
@@ -128,7 +128,7 @@ DatabaseManager.getUserSession = function () {
 
 DatabaseManager.getUserSessions = function (userid,returnFunc) {
     var db = DatabaseManager.db;
-    var sql = "SELECT s.rowid AS id, s.userid, s.userip, s.cookies, u.username FROM _sessions s JOIN _users u ON s.userid = u.rowid WHERE s.userid = "+userid;
+    var sql = "SELECT s.rowid AS id, s.userid, s.userip, s.cookies, s.expires, s.maxage, u.username FROM _sessions s JOIN _users u ON s.userid = u.rowid WHERE s.userid = "+userid;
     db.all(sql, function(err, rows) {
         returnFunc(err, rows);
     });
@@ -141,8 +141,9 @@ DatabaseManager.addSession = function (req,userid) {
             if (!exist) {
                 Util.log("There is a new session to add to db.".bold.info);
                 var db = DatabaseManager.db;
-                var stmt = db.prepare("INSERT INTO _sessions VALUES (?,?,?,?,?)");
-                stmt.run([session.userid, session.userip, session.sid, session.cookies, session.expires]);
+                var stmt = db.prepare("INSERT INTO _sessions VALUES (?,?,?,?,?,?)");
+                console.log(session.expires);
+                stmt.run([session.userid, session.userip, session.sid, session.cookies, session.expires, session.maxage]);
                 stmt.finalize();
             } else {
                 Util.log("Session already exist.".bold.info);
@@ -191,6 +192,7 @@ DatabaseManager.utils.formatSession = function (req,userid) {
     session.userid = userid;
     session.userip = req.ip;
     session.expires = req.session.cookie._expires;
+    session.maxage = req.session.cookie.originalMaxAge;
     session.cookies = req.cookies["connect.sid"];
     return session;
 };

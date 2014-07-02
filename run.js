@@ -50,6 +50,7 @@ app.all('/media/token/*',function(req, res, next){
 
 // Ip filter
 app.all('*/*',function(req, res, next){
+    //console.log(req);
     Util.log(("Request : "+ req.method + " " + req.url).service);
     next();
 });
@@ -75,6 +76,7 @@ app.all('*/*',function(req, res, next){
         var password = req.body.password;
         DatabaseManager.getUser(username,password,function(err, row){
             if(row){
+                req.session.user=row;
                 DatabaseManager.addSession(req,row.id);
                 // TODO add connexion history ?
                 res.send(row);
@@ -87,7 +89,9 @@ app.all('*/*',function(req, res, next){
     } else if (req.url == "/api/session" && req.method == "GET") {
         DatabaseManager.getSessionUser(req,null,function(err, row){
             if (row) {
+                req.session.user=row;
                 res.send(row);
+
             } else {
                 Util.log(("Error 403 : "+ req.method + " " + req.url).error);
                 res.send('403','Forbiden');
@@ -129,6 +133,13 @@ app.post('/api/folder/list', function(req, res){
 
     res.send(jsonResult);
 
+});
+
+app.get('/api/user/sessions', function(req, res){
+    DatabaseManager.getUserSessions(req.session.user.id,function(err, rows){
+        if (!err) res.send(rows);
+        else res.send(404,'Not found');
+    });
 });
 
 app.delete('/api/session', function(req, res){
