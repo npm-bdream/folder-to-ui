@@ -28,7 +28,7 @@ DatabaseManager.createDatabase = function (exists) {
     if (!exists) {
         var db = DatabaseManager.db;
         db.serialize(function () {
-            db.run("CREATE TABLE _users (username TEXT, password TEXT, email TEXT, theme TEXT, isAdmin INT)");
+            db.run("CREATE TABLE _users (username TEXT, password TEXT, email TEXT, theme TEXT, isAdmin INT, isEnabled INT)");
             db.run("CREATE TABLE _sessions (userid TEXT, userip TEXT, sid TEXT, cookies TEXT, expires INT, maxage INT, useragent TEXT)");
             db.run("CREATE TABLE _server_allow_ip (value TEXT UNIQUE)");
             db.run("CREATE TABLE _server_ignore_extension (value TEXT UNIQUE)");
@@ -38,16 +38,16 @@ DatabaseManager.createDatabase = function (exists) {
             var shaObj = new jsSHA("admin", "TEXT");
             var hash = shaObj.getHash("SHA-512", "HEX");
 
-            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?)");
-            stmt.run(["admin", hash, "npm.dream@gmail.com","css/glow-default.css",1]);
+            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?,?)");
+            stmt.run(["admin", hash, "npm.dream@gmail.com","css/glow-default.css",1,1]);
             stmt.finalize();
 
-            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?)");
-            stmt.run(["admin1", hash, "npm.dream@gmail.com","css/nutella-default.css",0]);
+            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?,?)");
+            stmt.run(["admin1", hash, "npm.dream@gmail.com","css/nutella-default.css",0,1]);
             stmt.finalize();
 
-            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?)");
-            stmt.run(["admin2", hash, "npm.dream@gmail.com","css/glow-electric.css",0]);
+            var stmt = db.prepare("INSERT INTO _users VALUES (?,?,?,?,?,?)");
+            stmt.run(["admin2", hash, "npm.dream@gmail.com","css/glow-electric.css",0,0]);
             stmt.finalize();
         });
     }
@@ -68,9 +68,17 @@ DatabaseManager.getUser = function (username,password,returnFunc) {
     var db = DatabaseManager.db;
     var sha_password = new jsSHA(password, "TEXT");
     var hash_password = sha_password.getHash("SHA-512", "HEX");
-    var sql = "SELECT rowid AS id, username, email FROM _users WHERE username = '"+username+"' AND password = '"+hash_password+"'";
+    var sql = "SELECT rowid AS id, username, email, theme, isAdmin FROM _users WHERE username = '"+username+"' AND password = '"+hash_password+"'";
     db.get(sql, function(err, row) {
         returnFunc(err, row);
+    });
+};
+
+DatabaseManager.putUser = function (userid,currentUserIsAdmin,data,returnFunc) {
+    var db = DatabaseManager.db;
+    var sql = "UPDATE _users SET theme = ? , email = ? WHERE rowid = ?";
+    db.run(sql,[data.theme,data.email,userid],function(err) {
+        returnFunc(err);
     });
 };
 
@@ -82,7 +90,7 @@ DatabaseManager.getSessionUser = function (req,userid,returnFunc) {
     var session = DatabaseManager.utils.formatSession(req,userid);
     if(session.sid && session.userip && session.expires && session.cookies) {
         var db = DatabaseManager.db;
-        var sql = "SELECT u.rowid AS id, u.username, u.email FROM _sessions s ";
+        var sql = "SELECT u.rowid AS id, u.username, u.email, u.theme, u.isAdmin FROM _sessions s ";
         sql += "JOIN _users u ON s.userid = u.rowid ";
         sql += "WHERE s.userip = '" + session.userip + "' ";
         if (userid != null) sql += "AND s.userid = '" + session.userid + "' ";

@@ -16,6 +16,7 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
     $scope.session = function () {
         $http.get('/api/session').success(function (data) {
             $scope.data.user = data;
+            $scope.param.theme = $scope.data.user.theme;
             $scope.param.username = data.username;
             $scope.param_ui_logged = true;
         }).error(function (data, status, headers, config){
@@ -36,6 +37,7 @@ folderToUiAppControllers.controller('MainCtrl', ['$scope','$http','$location', f
         $http.post('/api/auth', params).success(function (data) {
             if ( data.username ) {
                 $scope.data.user = data;
+                $scope.param.theme = $scope.data.user.theme;
                 $scope.param_ui_logged = true;
                 $scope.changeView('folder');
             }

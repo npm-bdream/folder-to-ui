@@ -25,7 +25,7 @@ folderToUiAppControllers.controller('FolderContentCtrl', ['$scope', '$http', fun
         $scope.conf_folder_path = p;
         $scope.conf_iron_path = [];
         var splited_conf_folder_path = $scope.conf_folder_path.split('/');
-        console.log (splited_conf_folder_path);
+        //console.log (splited_conf_folder_path);
         var splitedLenght = splited_conf_folder_path.length;
         for (var i=0; i<splitedLenght;i++){
             if (splited_conf_folder_path[i] == ''){

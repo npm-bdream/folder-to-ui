@@ -18,8 +18,8 @@
                     <option value="css/glow-velvety.css">glow-velvety</option>
                 </select></td>
             </tr>
-            <tr><td>Email : </td><td><input type="email" value="{{data.user.email}}" /></td></tr>
-            <tr><td></td><td><label class="button">Save</label></td></tr>
+            <tr><td>Email : </td><td><input type="email" ng-model="data.user.email" /></td></tr>
+            <tr><td></td><td><label class="button" ng-click="setUser()">Save</label></td></tr>
         </tbody>
     </table>
 </div>

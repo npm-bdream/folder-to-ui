@@ -136,6 +136,14 @@ app.post('/api/folder/list', function(req, res){
 
 });
 
+app.put('/api/user/self', function(req, res){
+    DatabaseManager.putUser(req.session.user.id,req.session.user.isAdmin,req.body,function(err){
+        if (!err) res.send(200);
+        else res.send('403','Forbiden');
+    });
+});
+
+
 app.get('/api/user/sessions', function(req, res){
     DatabaseManager.getUserSessions(req.session.user.id,function(err, rows){
         if (!err) res.send(rows);
