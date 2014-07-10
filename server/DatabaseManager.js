@@ -29,7 +29,7 @@ DatabaseManager.createDatabase = function (exists) {
         var db = DatabaseManager.db;
         db.serialize(function () {
             db.run("CREATE TABLE _users (username TEXT, password TEXT, email TEXT, theme TEXT, isAdmin INT)");
-            db.run("CREATE TABLE _sessions (userid TEXT, userip TEXT, sid TEXT, cookies TEXT, expires INT, maxage INT)");
+            db.run("CREATE TABLE _sessions (userid TEXT, userip TEXT, sid TEXT, cookies TEXT, expires INT, maxage INT, useragent TEXT)");
             db.run("CREATE TABLE _server_allow_ip (value TEXT UNIQUE)");
             db.run("CREATE TABLE _server_ignore_extension (value TEXT UNIQUE)");
             db.run("CREATE TABLE _server_ignore_file (value TEXT UNIQUE)");
@@ -128,7 +128,7 @@ DatabaseManager.getUserSession = function () {
 
 DatabaseManager.getUserSessions = function (userid,returnFunc) {
     var db = DatabaseManager.db;
-    var sql = "SELECT s.rowid AS id, s.userid, s.userip, s.cookies, s.expires, s.maxage, u.username FROM _sessions s JOIN _users u ON s.userid = u.rowid WHERE s.userid = "+userid;
+    var sql = "SELECT s.rowid AS id, s.userid, s.userip, s.cookies, s.expires, s.maxage, u.username, s.useragent FROM _sessions s JOIN _users u ON s.userid = u.rowid WHERE s.userid = "+userid;
     db.all(sql, function(err, rows) {
         returnFunc(err, rows);
     });
@@ -141,9 +141,9 @@ DatabaseManager.addSession = function (req,userid) {
             if (!exist) {
                 Util.log("There is a new session to add to db.".bold.info);
                 var db = DatabaseManager.db;
-                var stmt = db.prepare("INSERT INTO _sessions VALUES (?,?,?,?,?,?)");
+                var stmt = db.prepare("INSERT INTO _sessions VALUES (?,?,?,?,?,?,?)");
                 console.log(session.expires);
-                stmt.run([session.userid, session.userip, session.sid, session.cookies, session.expires, session.maxage]);
+                stmt.run([session.userid, session.userip, session.sid, session.cookies, session.expires, session.maxage, session.useragent]);
                 stmt.finalize();
             } else {
                 Util.log("Session already exist.".bold.info);
@@ -194,6 +194,7 @@ DatabaseManager.utils.formatSession = function (req,userid) {
     session.expires = req.session.cookie._expires;
     session.maxage = req.session.cookie.originalMaxAge;
     session.cookies = req.cookies["connect.sid"];
+    session.useragent = req.headers["user-agent"];
     return session;
 };
 

@@ -44,13 +44,14 @@ app.use(CookieParser());
 
 // Filter to use a token
 app.all('/media/token/*',function(req, res, next){
-    //console.log(req.cookies);
+    //console.log(req.header);
     next();
 });
 
 // Ip filter
 app.all('*/*',function(req, res, next){
     //console.log(req);
+    //console.log(req.headers["user-agent"]);
     Util.log(("Request : "+ req.method + " " + req.url).service);
     next();
 });

@@ -6,6 +6,7 @@
         <tbody>
         <tr><td>IP : </td><td>{{session.userip}}</td></tr>
         <tr><td>Cookie : </td><td>{{session.cookies}}</td></tr>
+        <tr><td>User-Agent : </td><td>{{session.useragent}}</td></tr>
         <tr><td>Started : </td><td>{{(session.expires - session.maxage) | date:'yyyy-MM-dd HH:mm:ss'}}</td></tr>
         <tr><td>Expire : </td><td>{{session.expires | date:'yyyy-MM-dd HH:mm:ss'}}</td></tr>
         </tbody>
