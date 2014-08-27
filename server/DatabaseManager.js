@@ -28,6 +28,9 @@ DatabaseManager.createDatabase = function (exists) {
     if (!exists) {
         var db = DatabaseManager.db;
         db.serialize(function () {
+
+            //Main part
+
             db.run("CREATE TABLE _users (username TEXT, password TEXT, email TEXT, theme TEXT, isAdmin INT, isEnabled INT)");
             db.run("CREATE TABLE _sessions (userid TEXT, userip TEXT, sid TEXT, cookies TEXT, expires INT, maxage INT, useragent TEXT)");
             db.run("CREATE TABLE _server_allow_ip (value TEXT UNIQUE)");
