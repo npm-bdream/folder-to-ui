@@ -39,7 +39,7 @@ var app = Express();
 //app.use(Morgan());
 app.use(BodyParser.json());       // to support JSON-encoded bodies
 app.use(BodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
-app.use(Session({ secret: 'My great secret', cookie: { maxAge: 60*60*1000 }}));
+app.use(Session({ secret: 'My great secret', cookie: { maxAge: 60*60*1000 }, resave: true, saveUninitialized: true}));
 app.use(CookieParser());
 
 // Filter to use a token
@@ -83,7 +83,7 @@ app.all('*/*',function(req, res, next){
                 res.send(row);
             } else {
                 Util.log(("Error 404 : "+ req.method + " " + req.url).error);
-                res.send('404','Not found');
+                res.status(404).send('Not found');
             }
         });
     // if session auth request
@@ -95,7 +95,7 @@ app.all('*/*',function(req, res, next){
 
             } else {
                 Util.log(("Error 403 : "+ req.method + " " + req.url).error);
-                res.send('403','Forbiden');
+                res.status(403).send('Forbiden');
             }
         });
     // else test session for next steps
@@ -106,7 +106,7 @@ app.all('*/*',function(req, res, next){
             }
             else {
                 Util.log(("Error 403 : "+ req.method + " " + req.url).error);
-                res.send('403','Forbiden');
+                res.status(403).send('Forbiden');
             }
         });
     }
@@ -138,8 +138,8 @@ app.post('/api/folder/list', function(req, res){
 
 app.put('/api/user/self', function(req, res){
     DatabaseManager.putUser(req.session.user.id,req.session.user.isAdmin,req.body,function(err){
-        if (!err) res.send(200);
-        else res.send('403','Forbiden');
+        if (!err) res.sendStatus(200);
+        else res.status(403).send('Forbiden');
     });
 });
 
@@ -147,14 +147,14 @@ app.put('/api/user/self', function(req, res){
 app.get('/api/user/sessions', function(req, res){
     DatabaseManager.getUserSessions(req.session.user.id,function(err, rows){
         if (!err) res.send(rows);
-        else res.send(404,'Not found');
+        else res.status(404).send('Not found');
     });
 });
 
 app.delete('/api/session', function(req, res){
     DatabaseManager.deleteCurrentSession(req,null,function(err){
-        if (!err) res.send(200);
-        else res.send(404,'Not found');
+        if (!err) res.sendStatus(200);
+        else res.status(404).send('Not found');
     });
 });
 
